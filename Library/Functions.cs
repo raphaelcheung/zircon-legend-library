@@ -506,18 +506,14 @@ namespace Library
             string textM = null;
             string textS = null;
 
-            if (time.Days >= 2) textD = $"{time.Days} {(small ? "Ds" : "Days")}";
-            else if (time.Days >= 1) textD = $"{time.Days} {(small ? "D" : "Day")}";
+            if (time.Days >= 1) textD = $"{time.Days} {(small ? "D" : "天")}";
 
-            if (time.Hours >= 2) textH = $"{time.Hours} {(small ? "Hrs" : "Hours")}";
-            else if (time.Hours >= 1) textH = $"{time.Hours} {(small ? "H" : "Hour")}";
+            if (time.Hours >= 1) textH = $"{time.Hours} {(small ? "H" : "小时")}";
 
-            if (time.Minutes >= 2) textM = $"{time.Minutes} {(small ? "Mins" : "Minutes")}";
-            else if (time.Minutes >= 1) textM = $"{time.Minutes} {(small ? "Min" : "Minute")}";
+            if (time.Minutes >= 1) textM = $"{time.Minutes} {(small ? "M" : "分")}";
 
-            if (time.Seconds >= 2) textS = $"{time.Seconds} {(small ? "Secs" : "Seconds")}";
-            else if (time.Seconds >= 1) textS = $"{ time.Seconds} {(small ? "Sec" : "Second")}";
-            else if (time.TotalSeconds > 1 && time.Seconds > 0) textS = "less than a second";
+            if (time.Seconds >= 1) textS = $"{ time.Seconds} {(small ? "S" : "秒")}";
+            else if (time.TotalSeconds > 1 && time.Seconds > 0) textS = "少于一秒";
 
             if (!details)
                 return textD ?? textH ?? textM ?? textS;

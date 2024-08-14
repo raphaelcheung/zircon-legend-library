@@ -47,7 +47,7 @@ namespace Library.Network
         protected ConcurrentQueue<Packet> SendList { get; private set; } = new ConcurrentQueue<Packet>();
         private byte[] _rawData = new byte[0];
 
-        public EventHandler<Exception> OnException;
+        public EventHandler<Exception> OnException { get; set; }
 
         protected BaseConnection(TcpClient client)
         {
