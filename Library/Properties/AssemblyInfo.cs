@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Library")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("云归计算机科技（深圳）有限公司")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Library")]
-[assembly: AssemblyCopyright("Copyright ©  2021云归计算机科技（深圳）有限公司")]
+[assembly: AssemblyCopyright("Copyright © ")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
