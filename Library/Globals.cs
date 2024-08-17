@@ -403,7 +403,7 @@ namespace Library
             [RefineQuality.Rush] = TimeSpan.FromSeconds(1),
             [RefineQuality.Quick] = TimeSpan.FromMinutes(5),
             [RefineQuality.Standard] = TimeSpan.FromMinutes(15),
-            [RefineQuality.Careful] = TimeSpan.FromHours(1),
+            [RefineQuality.Careful] = TimeSpan.FromMinutes(30),
             [RefineQuality.Precise] = TimeSpan.FromHours(3),
         };
     }
