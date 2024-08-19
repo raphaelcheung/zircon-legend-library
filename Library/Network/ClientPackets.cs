@@ -184,7 +184,7 @@ namespace Library.Network.ClientPackets
 
     public sealed class PickUp : Packet 
     {
-
+        public PickType PickType { get; set; }
     }
 
     public sealed class Chat : Packet
