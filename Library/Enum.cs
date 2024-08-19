@@ -457,6 +457,12 @@ namespace Library
         Block,          //需指定任意释放点
     }
 
+    public enum PickType
+    {
+        All,
+        Gold,
+    }
+
     public enum MagicType
     {
         None,
