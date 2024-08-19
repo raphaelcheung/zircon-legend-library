@@ -459,8 +459,10 @@ namespace Library
 
     public enum PickType
     {
-        All,
-        Gold,
+        Sequence = 0,   //捡拾范围内按顺序捡拾，一次只捡一个
+        All,            //捡拾范围内全部
+        Gold,           //捡拾范围内金币
+        Valuable,       //捡拾范围内的有加成普通物品以及高级、稀世物品
     }
 
     public enum MagicType
