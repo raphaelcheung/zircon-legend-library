@@ -97,9 +97,19 @@ namespace Library
 
                 if (lastSection == null) continue;
 
-                MethodInfo method = typeof(ConfigReader).GetMethod("Read", new[] { typeof(Type), typeof(string), typeof(string), property.PropertyType });
+                MethodInfo method;
 
-                property.SetValue(ob, method.Invoke(null, new[] { type, lastSection, property.Name, property.GetValue(ob) }));
+                if (property.PropertyType.IsEnum)
+                {
+                    method = typeof(ConfigReader).GetMethod("Read", new[] { typeof(Type), typeof(string), typeof(string), typeof(Type), typeof(object) });
+                    property.SetValue(ob, method.Invoke(null, new[] { type, lastSection, property.Name, property.PropertyType, property.GetValue(ob) }));
+                }
+                else
+                {
+                    method = typeof(ConfigReader).GetMethod("Read", new[] { typeof(Type), typeof(string), typeof(string), property.PropertyType });
+                    property.SetValue(ob, method.Invoke(null, new[] { type, lastSection, property.Name, property.GetValue(ob) }));
+                }
+
             }
         }
         private static void SaveConfig(Type type, string path, object ob)
@@ -117,7 +127,12 @@ namespace Library
 
                 if (lastSection == null) continue;
 
-                MethodInfo method = typeof(ConfigReader).GetMethod("Write", new[] { typeof(Type), typeof(string), typeof(string), property.PropertyType });
+                MethodInfo method;
+
+                if (property.PropertyType.IsEnum)
+                    method = typeof(ConfigReader).GetMethod("Write", new[] { typeof(Type), typeof(string), typeof(string), typeof(object) });
+                else
+                    method = typeof(ConfigReader).GetMethod("Write", new[] { typeof(Type), typeof(string), typeof(string), property.PropertyType });
 
                 method.Invoke(ob, new[] { type, lastSection, property.Name, property.GetValue(ob) });
             }
@@ -174,6 +189,22 @@ namespace Library
             ConfigContents[type][section][key] = value.ToString();
 
             return value;
+        }
+
+        public static object Read(Type type, string section, string key, Type enum_type, object value)
+        {
+            if (TryGetEntry(type, section, key, out string entry))
+            {
+                
+                try { 
+                    object result = Enum.Parse(enum_type, entry);
+                    return result;
+                }
+                catch  {  }
+            }
+
+            ConfigContents[type][section][key] = value.ToString();
+            return Activator.CreateInstance(enum_type);
         }
 
         public static Byte Read(Type type, string section, string key, Byte value)
@@ -502,6 +533,13 @@ namespace Library
 
         #region Writes
         public static void Write(Type type, string section, string key, Boolean value)
+        {
+            if (!ConfigContents[type].ContainsKey(section)) ConfigContents[type][section] = new Dictionary<string, string>();
+
+            ConfigContents[type][section][key] = value.ToString();
+        }
+
+        public static void Write(Type type, string section, string key, object value)
         {
             if (!ConfigContents[type].ContainsKey(section)) ConfigContents[type][section] = new Dictionary<string, string>();
 
