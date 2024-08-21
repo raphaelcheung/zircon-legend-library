@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,24 @@ namespace Library
             return value1 < value2 ? value1 : value2;
         }
 
+        public static string CalcMD5(byte[] bytes)
+        {
+            MD5 calc = MD5.Create();
+            byte[] datas = calc.ComputeHash(bytes);
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < datas.Length; i++)
+            {
+                sb.Append(datas[i].ToString("x2"));
+            }
+
+            return sb.ToString();
+        }
+
+        public static string CalcMD5(string src)
+        {
+            return CalcMD5(System.Text.Encoding.UTF8.GetBytes(src));
+        }
 
         public static Element GetElement(Stats stats)
         {

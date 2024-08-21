@@ -625,4 +625,9 @@ namespace Library.Network.ClientPackets
         public CellLinkInfo Green { get; set; }
         public CellLinkInfo Grey { get; set; }
     }
+
+    public sealed class CheckClientDb : Packet
+    {
+        public string Hash { get; set; }
+    }
 }

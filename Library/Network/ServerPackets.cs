@@ -1212,5 +1212,13 @@ namespace Library.Network.ServerPackets
 
         public bool Success { get; set; }
     }
+
+    public sealed class CheckClientDb : Packet
+    {
+        public bool IsUpgrading { get; set; }
+        public int CurrentIndex { get; set; } //从0开始
+        public int TotalCount { get; set; }
+        public byte[] Datas { get; set; }
+    }
 }
 
