@@ -1220,5 +1220,10 @@ namespace Library.Network.ServerPackets
         public int TotalCount { get; set; }
         public byte[] Datas { get; set; }
     }
+
+    public sealed class CheckClientHash : Packet
+    {
+        public Dictionary<string, string> ClientFileHash { get; set; }
+    }
 }
 

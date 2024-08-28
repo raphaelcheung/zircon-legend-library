@@ -317,7 +317,14 @@ namespace Library.Network
             if (info == null)
                 throw new NotImplementedException($"Not Implemented Exception: Method Process({p.PacketType}).");
 
-            info.Invoke(this, new object[] { p });
+            try { info.Invoke(this, new object[] { p }); }
+            catch(Exception e)
+            {
+                if (AdditionalLogging)
+                    OnException(this, e);
+                Disconnecting = true;
+            }
+            
 
             if (!Monitor) return;
 
