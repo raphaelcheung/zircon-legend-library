@@ -630,4 +630,8 @@ namespace Library.Network.ClientPackets
     {
         public string Hash { get; set; }
     }
+    public sealed class UpgradeClient : Packet
+    {
+        public string FileKey { get; set; }
+    }
 }

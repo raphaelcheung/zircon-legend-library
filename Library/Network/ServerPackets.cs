@@ -1225,5 +1225,13 @@ namespace Library.Network.ServerPackets
     {
         public Dictionary<string, string> ClientFileHash { get; set; }
     }
+
+    public sealed class UpgradeClient : Packet
+    {
+        public string FileKey { get; set; }
+        public int TotalSize { get; set; }
+        public int StartIndex { get; set; }
+        public byte[] Datas { get; set; }
+    }
 }
 
