@@ -1163,6 +1163,13 @@ namespace Library
             CheckDate = Time.Now - CheckTime;
         }
     }
+
+    public class ClientUpgradeItem
+    {
+        public string Key { get; set; }
+        public string Hash { get; set; }
+        public int Size { get; set; }
+    }
 }
 
 
