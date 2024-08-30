@@ -1223,7 +1223,7 @@ namespace Library.Network.ServerPackets
 
     public sealed class CheckClientHash : Packet
     {
-        public Dictionary<string, ClientUpgradeItem> ClientFileHash { get; set; }
+        public List<ClientUpgradeItem> ClientFileHash { get; set; }
     }
 
     public sealed class UpgradeClient : Packet
