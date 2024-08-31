@@ -72,7 +72,7 @@ namespace Library.Network.ClientPackets
     }
 
     [PacketMark(1009)]
-    public sealed class Logout : Packet {}
+    public sealed class Logout : Packet { }
 
     [PacketMark(1010)]
     public sealed class NewCharacter : Packet
@@ -100,7 +100,7 @@ namespace Library.Network.ClientPackets
     }
 
     [PacketMark(1013)]
-    public sealed class TownRevive : Packet {}
+    public sealed class TownRevive : Packet { }
 
     [PacketMark(1014)]
     public sealed class Turn : Packet
@@ -122,7 +122,7 @@ namespace Library.Network.ClientPackets
     }
 
     [PacketMark(1017)]
-    public sealed class Mount : Packet {}
+    public sealed class Mount : Packet { }
 
     [PacketMark(1018)]
     public sealed class Attack : Packet
@@ -159,7 +159,7 @@ namespace Library.Network.ClientPackets
     }
 
     [PacketMark(1022)]
-    public sealed class ItemSplit : Packet 
+    public sealed class ItemSplit : Packet
     {
         public GridType Grid { get; set; }
         public int Slot { get; set; }
@@ -211,7 +211,7 @@ namespace Library.Network.ClientPackets
     }
 
     [PacketMark(1029)]
-    public sealed class PickUp : Packet 
+    public sealed class PickUp : Packet
     {
         public byte PickType { get; set; }
     }
@@ -679,7 +679,7 @@ namespace Library.Network.ClientPackets
     [PacketMark(1096)]
     public sealed class MarriageTeleport : Packet
     {
-        
+
     }
 
     [PacketMark(1097)]
@@ -743,7 +743,7 @@ namespace Library.Network.ClientPackets
     [PacketMark(1106)]
     public sealed class JoinStarterGuild : Packet
     {
-        
+
     }
 
     [PacketMark(1107)]
@@ -775,5 +775,19 @@ namespace Library.Network.ClientPackets
     public sealed class UpgradeClient : Packet
     {
         public string FileKey { get; set; }
+    }
+
+    [PacketMark(1111)]
+    public sealed class LoginSimple : Packet
+    {
+        public string EMailAddress { get; set; }
+        public string Password { get; set; }
+        public string CheckSum { get; set; }
+    }
+
+    [PacketMark(1112)]
+    public sealed class AccountExpand : Packet
+    {
+
     }
 }
