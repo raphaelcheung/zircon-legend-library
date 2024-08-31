@@ -605,7 +605,7 @@ namespace Library.Network.ClientPackets
         public bool Accept { get; set; }
     }
 
-    [PacketMark(1086)]
+    [PacketMark(1085)]
     public sealed class GuildWar : Packet
     {
         public string GuildName { get; set; }
