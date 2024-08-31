@@ -12,7 +12,8 @@ namespace Library.Network
 {
     public abstract class Packet
     {
-        private static readonly List<Type> Packets;
+        //private static readonly List<Type> Packets;
+        private static readonly Dictionary<ushort, Type> dictPacketType;
         private static readonly Dictionary<Type, Action<object, BinaryWriter>> TypeWrite;
         private static readonly Dictionary<Type, Func<BinaryReader, object>> TypeRead;
 
@@ -25,7 +26,7 @@ namespace Library.Network
 
         static Packet()
         {
-            Packets = new List<Type>();
+            dictPacketType = new Dictionary<ushort, Type>();
 
             Type[] list = Assembly.GetExecutingAssembly().GetTypes();
 
@@ -33,22 +34,17 @@ namespace Library.Network
             foreach (Type type in list)
             {
                 if (type.BaseType != typeof(Packet)) continue;
-                Packets.Add(type);
+
+                PacketMark mark = type.GetCustomAttribute<PacketMark>();
+
+                if (mark == null)
+                    throw new Exception($"发现没有 ID 标记的网络包类型：{type}");
+                
+                if (dictPacketType.ContainsKey(mark.PacketId))
+                    throw new Exception($"网络包 ID 冲突：{type}");
+
+                dictPacketType[mark.PacketId] = type;
             }
-
-            Packets.Sort((x1, x2) =>
-            {
-                if (String.Compare(x1.Namespace, x2.Namespace, StringComparison.Ordinal) == 0)
-                    return String.Compare(x1.Name, x2.Name, StringComparison.Ordinal);
-
-                if (string.Compare(x1.Namespace, @"Library.Network.GeneralPackets", StringComparison.Ordinal) == 0) //We want General Packets shifted To the top.
-                    return -1;
-
-                if (string.Compare(x2.Namespace, @"Library.Network.GeneralPackets", StringComparison.Ordinal) == 0) //We want General Packets shifted To the top.
-                    return 1;
-
-                return String.Compare(x1.Name, x2.Name, StringComparison.Ordinal);
-            });
 
             #region Writes
 
@@ -142,11 +138,11 @@ namespace Library.Network
             {
                 stream.Seek(4, SeekOrigin.Begin);
 
-                short id = reader.ReadInt16();
-                if (id >= 0 && id < Packets.Count)
+                ushort id = reader.ReadUInt16();
+                if (dictPacketType.TryGetValue(id, out Type packet_type) && packet_type != null)
                 {
-                    p = (Packet)Activator.CreateInstance(Packets[id]);
-                    p.PacketType = Packets[id];
+                    p = (Packet)Activator.CreateInstance(packet_type);
+                    p.PacketType = packet_type;
                     ReadObject(reader, p);
                 }
             }
@@ -155,6 +151,16 @@ namespace Library.Network
 
             return p;
         }
+
+        protected ushort GetPacketId()
+        {
+            PacketMark mark = GetType().GetCustomAttribute<PacketMark>();
+            if (mark == null)
+                throw new Exception($"发现没有 ID 标记的网络包类型：{GetType()}");
+
+            return mark.PacketId;
+        }
+
         public byte[] GetPacketBytes()
         {
             byte[] packet;
@@ -162,7 +168,7 @@ namespace Library.Network
             using (MemoryStream stream = new MemoryStream())
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
-                writer.Write((short)Packets.IndexOf(GetType()));
+                writer.Write(GetPacketId());
                 WriteObject(writer, this);
                 packet = stream.ToArray();
             }
@@ -435,5 +441,16 @@ namespace Library.Network
     internal class CompleteObject : Attribute
     {
 
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    internal sealed class PacketMark : Attribute
+    {
+        public PacketMark(ushort packetId)
+        {
+            PacketId = packetId;
+        }
+
+        public ushort PacketId { get; private set; }
     }
 }
