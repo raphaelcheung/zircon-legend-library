@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -517,7 +519,35 @@ namespace Library
 
             return (int)(angle / 22.5F);
         }
+        public static string BytesToString(long byteCount)
+        {
+            string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+            double len = Convert.ToDouble(byteCount);
+            int order = 0;
+            while (len >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                len = len / 1024;
+            }
 
+            string result = String.Format("{0:0.##} {1}", len, sizes[order]);
+            return result;
+        }
+
+        public static string GetEnumDesc<T>(T e) where T : Enum
+        {
+            var type = e.GetType();
+            var name = Enum.GetName(type, e);
+            if (string.IsNullOrEmpty(name)) return null;
+
+            var field = type.GetField(name);
+            if (field == null) return null;
+
+            DescriptionAttribute desc = field.GetCustomAttribute<DescriptionAttribute>();
+            if (desc == null) return null;
+
+            return desc.Description;
+        }
         public static string ToString(TimeSpan time, bool details, bool small = false)
         {
             string textD = null;
