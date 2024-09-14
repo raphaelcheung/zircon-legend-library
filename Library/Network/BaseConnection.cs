@@ -21,7 +21,7 @@ namespace Library.Network
         public int TotalBytesSent { get; set; }
         public int TotalBytesReceived { get; set; }
 
-        public bool AdditionalLogging;
+        public bool AdditionalLogging { get; private set; } = true;
 
         protected TcpClient Client;
 
@@ -322,7 +322,8 @@ namespace Library.Network
             {
                 if (AdditionalLogging)
                     OnException(this, e);
-                Disconnecting = true;
+
+                //Disconnecting = true;
             }
             
 

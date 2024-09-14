@@ -52,16 +52,16 @@ namespace Library
     public enum MirDirection : byte
     {
         Up = 0,
-        [Description("Up Right")]
+        [Description("右上")]
         UpRight = 1,
         Right = 2,
-        [Description("Down Right")]
+        [Description("右下")]
         DownRight = 3,
         Down = 4,
-        [Description("Down Left")]
+        [Description("左下")]
         DownLeft = 5,
         Left = 6,
-        [Description("Up Left")]
+        [Description("左上")]
         UpLeft = 7
     }
 
@@ -1015,9 +1015,9 @@ namespace Library
     {
         Newest,
         Oldest,
-        [Description("Highest Price")]
+        [Description("最高价格")]
         HighestPrice,
-        [Description("Lowest Price")]
+        [Description("最低价格")]
         LowestPrice,
     }
 
@@ -1025,9 +1025,9 @@ namespace Library
     public enum MarketPlaceStoreSort
     {
         Alphabetical,
-        [Description("Highest Price")]
+        [Description("最高价格")]
         HighestPrice,
-        [Description("Lowest Price")]
+        [Description("最低价格")]
         LowestPrice,
         Favourite
     }
