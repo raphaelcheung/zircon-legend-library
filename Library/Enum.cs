@@ -1060,11 +1060,11 @@ namespace Library
 
     public enum RefineQuality : byte
     {
-        Rush,
-        Quick,
-        Standard,
-        Careful,
-        Precise,
+        [Description("立刻")] Rush,
+        [Description("较快")] Quick,
+        [Description("标准")] Standard,
+        [Description("仔细")] Careful,
+        [Description("大师")] Precise,
     }
 
     public enum ItemEffect : byte
