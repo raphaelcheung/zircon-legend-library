@@ -1533,5 +1533,17 @@ namespace Library.Network.ServerPackets
 
         public List<ClientBlockInfo> BlockList { get; set; }
     }
+
+    [PacketMark(2184)]
+    public sealed class AutoTimeChanged : Packet
+    {
+        public long AutoTime { get; set; }
+    }
+
+    [PacketMark(2185)]
+    public sealed class SortBagItem : Packet
+    {
+        public List<ClientUserItem> Items { get; set; }
+    }
 }
 

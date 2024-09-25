@@ -490,6 +490,8 @@ namespace Library
 
         public int StorageSize { get; set; }
 
+        public List<ClientAutoFightLink> AutoFightLinks { get; set; }
+
         [CompleteObject]
         public void OnComplete()
         {
@@ -1169,6 +1171,17 @@ namespace Library
         public string Key { get; set; }
         public string Hash { get; set; }
         public int Size { get; set; }
+    }
+
+    public sealed class ClientAutoFightLink
+    {
+        public AutoSetConf Slot { get; set; }
+
+        public MagicType MagicIndex { get; set; }
+
+        public bool Enabled { get; set; }
+
+        public int TimeCount { get; set; }
     }
 }
 

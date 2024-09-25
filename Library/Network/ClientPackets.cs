@@ -790,4 +790,20 @@ namespace Library.Network.ClientPackets
     {
 
     }
+
+    [PacketMark(1113)]
+    public sealed class AutoFightConfChanged : Packet
+    {
+        public AutoSetConf Slot { get; set; }
+
+        public MagicType MagicIndex { get; set; }
+
+        public int TimeCount { get; set; }
+
+        public bool Enabled { get; set; }
+    }
+
+    [PacketMark(1114)]
+    public sealed class SortBagItem : Packet { }
+
 }
