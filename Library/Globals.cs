@@ -90,6 +90,7 @@ namespace Library
             EliteCraftWeaponPercentCost = 80000000;
 
         public static decimal MarketPlaceTax = 0.07M;  //2.5x Item cost
+        public static long MaxGold = 1001000000L;
 
 
         public static long
@@ -118,13 +119,6 @@ namespace Library
             "English",
             "Chinese",
         };
-
-
-
-
-
-
-
 
         public static List<decimal> ExperienceList = new List<decimal>
         {
@@ -825,6 +819,7 @@ namespace Library
                     return 0;
             }
         }
+
     }
     
     public sealed class ClientBeltLink
@@ -1182,6 +1177,23 @@ namespace Library
         public bool Enabled { get; set; }
 
         public int TimeCount { get; set; }
+    }
+
+    public class MagicHelper
+    {
+        public MagicType TypeID { get; set; }
+
+        public string Name { get; set; }
+
+        public SpellKey Key { get; set; }
+
+        public bool LockPlayer { get; set; }
+
+        public bool LockMonster { get; set; }
+
+        public int Amulet { get; set; }
+
+        public object obj { get; set; }
     }
 }
 

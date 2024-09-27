@@ -14,6 +14,7 @@ namespace Library
         private static readonly Regex HeaderRegex = new Regex(@"^\[(?<Header>.+)\]$", RegexOptions.Compiled);
         private static readonly Regex EntryRegex = new Regex(@"^(?<Key>.*?)=(?<Value>.*)$", RegexOptions.Compiled);
         private static readonly Regex ColorRegex = new Regex(@"\[A:\s?(?<A>[0-9]{1,3}),\s?R:\s?(?<R>[0-9]{1,3}),\s?G:\s?(?<G>[0-9]{1,3}),\s?B:\s?(?<B>[0-9]{1,3})\]", RegexOptions.Compiled);
+        private static readonly Regex MagicRegex = new Regex("\\[N:\\s?(?<N>[A-Za-z0-9\\u4e00-\\u9fa5]{0,16}),\\s?T:\\s?(?<T>[0-9]{1,3}),\\s?K:\\s?(?<K>[0-9]{1,3}),\\s?P:\\s?(?<P>[0-9]{1,3}),\\s?M:\\s?(?<M>[0-9]{1,3}),\\s?A:\\s?(?<A>[0-9-]{1,3})\\]", RegexOptions.Compiled);
 
         public static readonly Dictionary<Type, object> ConfigObjects = new Dictionary<Type, object>();
 
@@ -107,7 +108,9 @@ namespace Library
                 else
                 {
                     method = typeof(ConfigReader).GetMethod("Read", new[] { typeof(Type), typeof(string), typeof(string), property.PropertyType });
-                    property.SetValue(ob, method.Invoke(null, new[] { type, lastSection, property.Name, property.GetValue(ob) }));
+
+                    if (method != null)
+                        property.SetValue(ob, method.Invoke(null, new[] { type, lastSection, property.Name, property.GetValue(ob) }));
                 }
 
             }
@@ -190,7 +193,15 @@ namespace Library
 
             return value;
         }
-
+        public static MagicType Read(Type type, string section, string key, MagicType value)
+        {
+            string s;
+            ushort result;
+            if (ConfigReader.TryGetEntry(type, section, key, out s) && ushort.TryParse(s, out result))
+                return (MagicType)result;
+            ConfigReader.ConfigContents[type][section][key] = value.ToString();
+            return value;
+        }
         public static object Read(Type type, string section, string key, Type enum_type, object value)
         {
             if (TryGetEntry(type, section, key, out string entry))
@@ -206,7 +217,33 @@ namespace Library
             ConfigContents[type][section][key] = value.ToString();
             return Activator.CreateInstance(enum_type);
         }
-
+        public static List<MagicHelper> Read(Type type, string section, string key, List<MagicHelper> value)
+        {
+            string str;
+            if (ConfigReader.TryGetEntry(type, section, key, out str))
+            {
+                char[] separator = new char[1] { '|' };
+                List<MagicHelper> magicHelperList = new List<MagicHelper>();
+                foreach (string input in str.Split(separator, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    MagicHelper magicHelper = new MagicHelper();
+                    Match match = ConfigReader.MagicRegex.Match(input);
+                    if (match.Success)
+                    {
+                        magicHelper.Name = match.Groups[78].Value;
+                        magicHelper.TypeID = (MagicType)int.Parse(match.Groups["T"].Value);
+                        magicHelper.Key = (SpellKey)int.Parse(match.Groups["K"].Value);
+                        magicHelper.LockPlayer = int.Parse(match.Groups["P"].Value) > 0;
+                        magicHelper.LockMonster = int.Parse(match.Groups["M"].Value) > 0;
+                        magicHelper.Amulet = int.Parse(match.Groups["A"].Value);
+                        magicHelperList.Add(magicHelper);
+                    }
+                }
+                return magicHelperList;
+            }
+            ConfigReader.ConfigContents[type][section][key] = value.ToString();
+            return value;
+        }
         public static Byte Read(Type type, string section, string key, Byte value)
         {
             string entry;
@@ -538,7 +575,21 @@ namespace Library
 
             ConfigContents[type][section][key] = value.ToString();
         }
-
+        public static void Write(Type type, string section, string key, MagicType value)
+        {
+            if (!ConfigReader.ConfigContents[type].ContainsKey(section))
+                ConfigReader.ConfigContents[type][section] = new Dictionary<string, string>();
+            ConfigReader.ConfigContents[type][section][key] = ((ushort)value).ToString();
+        }
+        public static void Write(Type type, string section, string key, List<MagicHelper> value)
+        {
+            if (!ConfigReader.ConfigContents[type].ContainsKey(section))
+                ConfigReader.ConfigContents[type][section] = new Dictionary<string, string>();
+            string str = (string)null;
+            for (int index = 0; index < value.Count; ++index)
+                str = (str == null ? "" : str + "|") + string.Format("[N:{0},T:{1},K:{2},P:{3},M:{4},A:{5}]", (object)value[index].Name, (object)(int)value[index].TypeID, (object)(int)value[index].Key, (object)(value[index].LockPlayer ? 1 : 0), (object)(value[index].LockMonster ? 1 : 0), (object)value[index].Amulet);
+            ConfigReader.ConfigContents[type][section][key] = str;
+        }
         public static void Write(Type type, string section, string key, object value)
         {
             if (!ConfigContents[type].ContainsKey(section)) ConfigContents[type][section] = new Dictionary<string, string>();

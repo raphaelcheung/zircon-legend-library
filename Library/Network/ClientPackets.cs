@@ -806,4 +806,20 @@ namespace Library.Network.ClientPackets
     [PacketMark(1114)]
     public sealed class SortBagItem : Packet { }
 
+    [PacketMark(1115)]
+    public sealed class PickUpC : Packet
+    {
+        public int ItemIdx { get; set; }
+        public int Xpos { get; set; }
+        public int Ypos { get; set; }
+    }
+
+    [PacketMark(1116)]
+    public sealed class PickUpA : Packet
+    {
+        public int ItemIdx { get; set; }
+        public int Xpos { get; set; }
+        public int Ypos { get; set; }
+    }
+
 }

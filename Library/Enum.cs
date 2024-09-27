@@ -160,6 +160,8 @@ namespace Library
         WeaponCraftPurple,
         WeaponCraftGreen,
         WeaponCraftGrey,
+        PatchGrid,
+        BaoshiItems
     }
 
     public enum BuffType
@@ -284,7 +286,7 @@ namespace Library
 
     public enum ItemType : byte
     {
-        Nothing,
+        [Description("无")] Nothing,
         [Description("药水")]Consumable,
         [Description("武器")]Weapon,
         [Description("盔甲")]Armour,
@@ -299,19 +301,21 @@ namespace Library
         [Description("肉")] Meat,
         [Description("矿")] Ore,
         [Description("书")] Book,
-        Scroll,
+        [Description("卷轴")] Scroll,
         [Description("暗石")]DarkStone,
         [Description("特殊精炼")]RefineSpecial,
         [Description("马甲")]HorseArmour,
-        Flower,
+        [Description("鲜花")] Flower,
         [Description("Companion Food")]CompanionFood,
         [Description("Companion Bag")]CompanionBag,
         [Description("Companion Head")]CompanionHead,
         [Description("Companion Back")]CompanionBack,
-        System,
+        [Description("系统")] System,
         [Description("套装组件")]ItemPart,
-        Emblem,
-        Shield,
+        [Description("徽章")] Emblem,
+        [Description("盾牌")] Shield,
+
+        [Description("法宝")] Fabao,
     }
 
     public enum MirAction : byte
