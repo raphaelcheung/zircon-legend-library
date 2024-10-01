@@ -822,4 +822,10 @@ namespace Library.Network.ClientPackets
         public int Ypos { get; set; }
     }
 
+    [PacketMark(1117)]
+    public sealed class PickUpS : Packet
+    {
+        public List<PickItemInfo> UserItems { get; set; }
+        public List<PickItemInfo> CompanionItems { get; set; }
+    }
 }

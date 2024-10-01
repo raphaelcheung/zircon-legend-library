@@ -21,7 +21,11 @@ namespace Library
         {
             return value1 < value2 ? value1 : value2;
         }
-
+        public static string HashBytes2String(byte[] hash)
+        {
+            var tmp = new ASCIIEncoding();
+            return tmp.GetString(hash);
+        }
         public static string CalcMD5(byte[] bytes)
         {
             MD5 calc = MD5.Create();

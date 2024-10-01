@@ -1195,6 +1195,13 @@ namespace Library
 
         public object obj { get; set; }
     }
+
+    public class PickItemInfo
+    {
+        public int ItemIndex { get; set; }
+        public int xPos { get; set; }
+        public int yPos { get; set; }
+    }
 }
 
 
