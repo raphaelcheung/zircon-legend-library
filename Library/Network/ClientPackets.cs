@@ -828,4 +828,10 @@ namespace Library.Network.ClientPackets
         public List<PickItemInfo> UserItems { get; set; }
         public List<PickItemInfo> CompanionItems { get; set; }
     }
+
+    [PacketMark(1118)]
+    public sealed class PktFilterItem : Packet
+    {
+        public List<string> FilterStr { get; set; }
+    }
 }
