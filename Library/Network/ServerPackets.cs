@@ -1545,5 +1545,12 @@ namespace Library.Network.ServerPackets
     {
         public List<ClientUserItem> Items { get; set; }
     }
+
+    [PacketMark(2186)]
+    public sealed class Qiehuanxunzhaoguaiwumoshi : Packet
+    {
+        public bool Moshi01 { get; set; }
+        public bool Moshi02 { get; set; }
+    }
 }
 

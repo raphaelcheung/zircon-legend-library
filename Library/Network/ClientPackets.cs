@@ -834,4 +834,11 @@ namespace Library.Network.ClientPackets
     {
         public List<string> FilterStr { get; set; }
     }
+
+    [PacketMark(1119)]
+    public sealed class Qiehuanxunzhaoguaiwumoshi : Packet
+    {
+        public bool Moshi01 { get; set; }
+        public bool Moshi02 { get; set; }
+    }
 }

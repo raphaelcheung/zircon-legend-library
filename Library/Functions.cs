@@ -594,5 +594,31 @@ namespace Library
 
             return str.ToString();
         }
+
+
+        public static Point PointNearTarget(Point start, Point end, int randomSteps = 1)
+        {
+            int num = end.X;
+            int num2 = end.Y;
+            if (start.X < end.X)
+            {
+                num -= randomSteps;
+            }
+            else if (start.X > end.X)
+            {
+                num += randomSteps;
+            }
+
+            if (start.Y < end.Y)
+            {
+                num2 -= randomSteps;
+            }
+            else if (start.Y > end.Y)
+            {
+                num2 += randomSteps;
+            }
+
+            return new Point(num, num2);
+        }
     }
 }

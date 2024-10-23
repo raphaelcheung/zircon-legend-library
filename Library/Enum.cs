@@ -1201,29 +1201,29 @@ namespace Library
     {
         None,
 
-        [Description("Key\n1")]
+        [Description("F1")]
         Spell01,
-        [Description("Key\n2")]
+        [Description("F2")]
         Spell02,
-        [Description("Key\n3")]
+        [Description("F3")]
         Spell03,
-        [Description("Key\n4")]
+        [Description("F4")]
         Spell04,
-        [Description("Key\n5")]
+        [Description("F5")]
         Spell05,
-        [Description("Key\n6")]
+        [Description("F6")]
         Spell06,
-        [Description("Key\n7")]
+        [Description("F7")]
         Spell07,
-        [Description("Key\n8")]
+        [Description("F8")]
         Spell08,
-        [Description("Key\n9")]
+        [Description("F9")]
         Spell09,
-        [Description("Key\n10")]
+        [Description("F10")]
         Spell10,
-        [Description("Key\n11")]
+        [Description("F11")]
         Spell11,
-        [Description("Key\n12")]
+        [Description("F12")]
         Spell12,
 
         [Description("Key\n13")]
