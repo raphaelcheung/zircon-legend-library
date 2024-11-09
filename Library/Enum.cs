@@ -68,7 +68,7 @@ namespace Library
     [Flags]
     public enum RequiredClass : byte
     {
-        None = 0,
+        [Description("无")] None = 0,
         [Description("战士")] Warrior = 1,
         [Description("法师")] Wizard = 2,
         [Description("道士")] Taoist = 4,

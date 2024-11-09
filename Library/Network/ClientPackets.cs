@@ -841,4 +841,7 @@ namespace Library.Network.ClientPackets
         public bool Moshi01 { get; set; }
         public bool Moshi02 { get; set; }
     }
+
+    [PacketMark(1120)]
+    public sealed class SortStorageItem : Packet { }
 }

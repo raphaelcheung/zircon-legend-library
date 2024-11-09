@@ -351,6 +351,9 @@ namespace Library
             1000000,
             1300000,
             2000000,
+            2300000,
+            2700000,
+            3000000,
         };
 
         public static List<decimal> AccessoryExperienceList = new List<decimal>

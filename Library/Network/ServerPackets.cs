@@ -1552,5 +1552,11 @@ namespace Library.Network.ServerPackets
         public bool Moshi01 { get; set; }
         public bool Moshi02 { get; set; }
     }
+
+    [PacketMark(2187)]
+    public sealed class SortStorageItem : Packet
+    {
+        public List<ClientUserItem> Items { get; set; }
+    }
 }
 
