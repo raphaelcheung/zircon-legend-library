@@ -1558,5 +1558,12 @@ namespace Library.Network.ServerPackets
     {
         public List<ClientUserItem> Items { get; set; }
     }
+
+    [PacketMark(2188)]
+    public sealed class WeaponRefineBase : Packet
+    {
+        public int LevelLimit { get; set; }
+        public int RarityStep { get; set; }
+    }
 }
 

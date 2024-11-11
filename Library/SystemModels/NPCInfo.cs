@@ -611,7 +611,8 @@ namespace Library.SystemModels
 
         Random,
 
-        WeaponAddedStats
+        WeaponAddedStats,
+        WeaponLevelFull,
     }
     public enum Operator
     {
