@@ -201,10 +201,8 @@ namespace MirDB
             SaveUsers();
         }
 
-        private void SaveSystem()
+        public void ForceSaveSystem()
         {
-            if ((Mode & SessionMode.System) != SessionMode.System) return;
-
             if (!Directory.Exists(Root))
                 Directory.CreateDirectory(Root);
 
@@ -239,6 +237,13 @@ namespace MirDB
             }
 
             File.Move(SystemPath + TempExtention, SystemPath);
+        }
+
+        public void SaveSystem()
+        {
+            if ((Mode & SessionMode.System) != SessionMode.System) return;
+
+            ForceSaveSystem();
         }
         private void SaveUsers()
         {

@@ -395,7 +395,20 @@ namespace Library.SystemModels
         }
         private int _PartCount;
         
-        
+        public bool BlockMonsterDrop
+        {
+            get => _BlockMonsterDrop;
+            set
+            {
+                if (_BlockMonsterDrop == value) return;
+
+                var oldValue = _BlockMonsterDrop;
+                _BlockMonsterDrop = value;
+
+                OnChanged(oldValue, value, "BlockMonsterDrop");
+            }
+        }
+        private bool _BlockMonsterDrop = false;
 
         [Association("Set")]
         public SetInfo Set

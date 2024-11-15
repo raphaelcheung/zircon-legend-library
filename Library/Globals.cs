@@ -401,7 +401,7 @@ namespace Library
             [RefineQuality.Quick] = TimeSpan.FromMinutes(5),
             [RefineQuality.Standard] = TimeSpan.FromMinutes(15),
             [RefineQuality.Careful] = TimeSpan.FromMinutes(30),
-            [RefineQuality.Precise] = TimeSpan.FromHours(3),
+            [RefineQuality.Precise] = TimeSpan.FromHours(2),
         };
     }
 
