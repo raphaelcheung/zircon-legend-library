@@ -1565,5 +1565,12 @@ namespace Library.Network.ServerPackets
         public int LevelLimit { get; set; }
         public int RarityStep { get; set; }
     }
+
+    [PacketMark(2189)]
+    public sealed class SkillConfig : Packet
+    {
+        public int SkillLevelLimit {  get; set; }
+
+    }
 }
 

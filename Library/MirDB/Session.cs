@@ -17,13 +17,15 @@ namespace MirDB
         private const string TempExtention = @".TMP";
         private const string CompressExtention = @".gz";
 
+        private DateTime BackupTime = DateTime.MinValue;
+
         private string Root { get; }
         internal SessionMode Mode { get; }
 
-        public bool BackUp { get; set; } = true;
         public int BackUpDelay { get; set; }
         private string BackupRoot { get; }
 
+        public TimeSpan BackUpSpace {  get; set; } = TimeSpan.Zero;
 
         private string SystemPath => Root + "System" + Extention;
         private string SystemBackupPath => BackupRoot + @"System/";
@@ -220,21 +222,11 @@ namespace MirDB
                 }
             }
 
-            if (BackUp && !Directory.Exists(SystemBackupPath))
+            if (!Directory.Exists(SystemBackupPath))
                 Directory.CreateDirectory(SystemBackupPath);
 
             if (File.Exists(SystemPath))
-            {
-                if (BackUp)
-                {
-                    using (FileStream sourceStream = File.OpenRead(SystemPath))
-                    using (FileStream destStream = File.Create(SystemBackupPath + "System " + ToBackUpFileName(DateTime.UtcNow) + Extention + CompressExtention))
-                    using (GZipStream compress = new GZipStream(destStream, CompressionMode.Compress))
-                        sourceStream.CopyTo(compress);
-                }
-
-                File.Delete(SystemPath);
-            }
+                File.Move(SystemPath, SystemBackupPath + "System " + ToBackUpFileName(DateTime.Now.ToLocalTime()) + Extention);
 
             File.Move(SystemPath + TempExtention, SystemPath);
         }
@@ -266,20 +258,20 @@ namespace MirDB
                     writer.Write(data);
                 }
             }
-            if (BackUp && !Directory.Exists(UsersBackupPath))
+
+            if (!Directory.Exists(UsersBackupPath))
                 Directory.CreateDirectory(UsersBackupPath);
 
             if (File.Exists(UsersPath))
             {
-                if (BackUp)
+                var now = DateTime.Now;
+                if (now > BackupTime)
                 {
-                    using (FileStream sourceStream = File.OpenRead(UsersPath))
-                    using (FileStream destStream = File.Create(UsersBackupPath + "Users " + ToBackUpFileName(DateTime.UtcNow) + Extention + CompressExtention))
-                    using (GZipStream compress = new GZipStream(destStream, CompressionMode.Compress))
-                        sourceStream.CopyTo(compress);
+                    File.Move(UsersPath, UsersBackupPath + "Users " + ToBackUpFileName(now.ToLocalTime()) + Extention);
+                    BackupTime = now + BackUpSpace;
                 }
-
-                File.Delete(UsersPath);
+                else
+                    File.Delete(UsersPath);
             }
 
             File.Move(UsersPath + TempExtention, UsersPath);
@@ -316,9 +308,7 @@ namespace MirDB
             if (BackUpDelay == 0)
                 return ToFileName(time);
 
-            time = new DateTime(time.Ticks - (time.Ticks % (BackUpDelay * TimeSpan.TicksPerMinute)));
-
-            return $"{time.Year:0000}-{time.Month:00}-{time.Day:00} {time.Hour:00}-{time.Minute:00}";
+            return $"{time.Year:0000}-{time.Month:00}-{time.Day:00} {time.Hour:00}-{time.Minute:00}-{time.Second:00}";
         }
         internal void Delete(DBObject ob)
         {
