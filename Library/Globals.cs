@@ -33,10 +33,10 @@ namespace Library
 
         public static Random Random  = new Random();
 
-        public static readonly Regex EMailRegex = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", RegexOptions.Compiled);
-        public static readonly Regex PasswordRegex = new Regex(@"^[\S]{" + MinPasswordLength + "," + MaxPasswordLength + "}$", RegexOptions.Compiled);
-        public static readonly Regex CharacterReg = new Regex(@"^[A-Za-z0-9]|[\u4e00-\u9fa5]{" + MinCharacterNameLength + "," + MaxCharacterNameLength + @"}$", RegexOptions.Compiled);
-        public static readonly Regex GuildNameRegex = new Regex(@"^[A-Za-z0-9]|[\u4e00-\u9fa5]{" + MinGuildNameLength + "," + MaxGuildNameLength + "}$", RegexOptions.Compiled);
+        public static readonly Regex EMailRegex = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
+        public static readonly Regex PasswordRegex = new Regex(@"^[\S]{" + MinPasswordLength + "," + MaxPasswordLength + "}$");
+        public static readonly string CharacterReg = @"^([A-Za-z0-9]|[\u4e00-\u9fa5]){" + MinCharacterNameLength + "," + MaxCharacterNameLength + @"}$";
+        public static readonly Regex GuildNameRegex = new Regex(@"^([A-Za-z0-9]|[\u4e00-\u9fa5]){" + MinGuildNameLength + "," + MaxGuildNameLength + "}$", RegexOptions.IgnoreCase);
 
         public static Color NoneColour = Color.White,
                             FireColour = Color.OrangeRed,
@@ -54,17 +54,17 @@ namespace Library
             MinPasswordLength = 5,
             MaxPasswordLength = 15,
 
-            MinRealNameLength = 3,
+            MinRealNameLength = 2,
             MaxRealNameLength = 20,
 
             MaxEMailLength = 50,
 
-            MinCharacterNameLength = 3,
-            MaxCharacterNameLength = 15,
+            MinCharacterNameLength = 2,
+            MaxCharacterNameLength = 8,
             MaxCharacterCount = 4,
 
             MinGuildNameLength = 2,
-            MaxGuildNameLength = 15,
+            MaxGuildNameLength = 8,
 
             MaxChatLength = 120,
             MaxGuildNoticeLength = 4000,

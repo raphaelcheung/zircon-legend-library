@@ -541,19 +541,19 @@ namespace Library
         [StatDescription(Title = "隐身", Mode = StatType.Text)]
         Invisibility,
 
-        [StatDescription(Title = "Affinity: 火焰", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 火焰", Mode = StatType.Text)]
         FireAffinity,
-        [StatDescription(Title = "Affinity: 寒冰", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 寒冰", Mode = StatType.Text)]
         IceAffinity,
-        [StatDescription(Title = "Affinity: 雷电", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 雷电", Mode = StatType.Text)]
         LightningAffinity,
-        [StatDescription(Title = "Affinity: 风暴", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 风暴", Mode = StatType.Text)]
         WindAffinity,
-        [StatDescription(Title = "Affinity: 神圣", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 神圣", Mode = StatType.Text)]
         HolyAffinity,
-        [StatDescription(Title = "Affinity: 暗黑", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 暗黑", Mode = StatType.Text)]
         DarkAffinity,
-        [StatDescription(Title = "Affinity: 幻影", Mode = StatType.Text)]
+        [StatDescription(Title = "属性: 幻影", Mode = StatType.Text)]
         PhantomAffinity,
 
         [StatDescription(Title = "反射伤害", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
@@ -561,7 +561,7 @@ namespace Library
 
         [StatDescription(Mode = StatType.None)]
         WeaponElement,
-        [StatDescription(Title = "Temporary Innocence.", Mode = StatType.Text)]
+        [StatDescription(Title = "暂时无敌.", Mode = StatType.Text)]
         Redemption,
         [StatDescription(Title = "生命", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         HealthPercent,
@@ -585,7 +585,7 @@ namespace Library
         [StatDescription(Title = "隐形伤害", Format = "{0} 每次", Mode = StatType.Default)]
         CloakDamage,
 
-        [StatDescription(Title = "New Beginning Charges", Format = "{0}", Mode = StatType.Default)]
+        [StatDescription(Title = "重新开始的代价", Format = "{0}", Mode = StatType.Default)]
         TheNewBeginning,
 
         [StatDescription(Title = "褐名, 大家可以自由攻击你", Mode = StatType.Text)]
@@ -594,12 +594,12 @@ namespace Library
         PKPoint,
 
 
-        [StatDescription(Title = "Global Shout no level restriction", Mode = StatType.Text)]
+        [StatDescription(Title = "全服喊话没有等级限制", Mode = StatType.Text)]
         GlobalShout,
-        [StatDescription(Title = "魔防", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "自然魔力", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MCPercent,
 
-        [StatDescription(Title = "Chance of Judgement", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "审判几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         JudgementOfHeaven,
 
         [StatDescription(Title = "透明", Mode = StatType.Text)]
@@ -626,24 +626,24 @@ namespace Library
 
         [StatDescription(Title = "旧持久", Mode = StatType.Time)]
         OldDuration,
-        [StatDescription(Title = "Available Hunt Gold", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
+        [StatDescription(Title = "有效猎币", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
         AvailableHuntGold,
-        [StatDescription(Title = "Maximum Available Hunt Gold", Format = "{0:#0}", Mode = StatType.Default)]
+        [StatDescription(Title = "有效猎币最大值", Format = "{0:#0}", Mode = StatType.Default)]
         AvailableHuntGoldCap,
         [StatDescription(Title = "恢复冷却", Mode = StatType.Time)]
         ItemReviveTime,
         [StatDescription(Title = "最大精炼几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MaxRefineChance,
 
-        [StatDescription(Title = "Companion Inventory Space", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
+        [StatDescription(Title = "小伙伴背包空间", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
         CompanionInventory,
-        [StatDescription(Title = "Companion Inventory Weight", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
+        [StatDescription(Title = "小伙伴背包负重", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
         CompanionBagWeight,
         [StatDescription(Title = "破坏力", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         DCPercent,
         [StatDescription(Title = "精神力", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         SCPercent,
-        [StatDescription(Title = "Companion Hunger", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
+        [StatDescription(Title = "小伙伴饥饿度", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)]
         CompanionHunger,
 
         [StatDescription(Title = "宠物 破坏力", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
@@ -654,7 +654,7 @@ namespace Library
         [StatDescription(Title = "在地图上定位玩家", Mode = StatType.Text)]
         PlayerTracker,
 
-        [StatDescription(Title = "Companion Rate", Format = "x{0}", Mode = StatType.Default)]
+        [StatDescription(Title = "小伙伴经验倍率", Format = "x{0}", Mode = StatType.Default)]
         CompanionRate,
 
         [StatDescription(Title = "重量比例", Format = "x{0}", Mode = StatType.Default)]
@@ -666,28 +666,28 @@ namespace Library
         [StatDescription(Title = "魔法", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         ManaPercent,
 
-        [StatDescription(Title = "Recall Command: @GroupRecall", Mode = StatType.Text)]
+        [StatDescription(Title = "召唤命令: @GroupRecall", Mode = StatType.Text)]
         RecallSet,
 
-        [StatDescription(Title = "Regular Monster's Base Experience", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础经验倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MonsterExperience,
 
-        [StatDescription(Title = "Regular Monster's Base Gold", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础金币倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MonsterGold,
 
-        [StatDescription(Title = "Regular Monster's Base Drop Rate", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础掉落倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MonsterDrop,
 
-        [StatDescription(Title = "Regular Monster's Base Damage", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础伤害倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MonsterDamage,
 
-        [StatDescription(Title = "Regular Monster's Base Health", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础生命倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MonsterHealth,
 
         [StatDescription(Mode = StatType.None)]
         ItemIndex,
 
-        [StatDescription(Title = "Improved Companion item collection.", Mode = StatType.Text)]
+        [StatDescription(Title = "小伙伴捡拾能力提升.", Mode = StatType.Text)]
         CompanionCollection,
         [StatDescription(Title = "护身戒指", Mode = StatType.Text)]
         ProtectionRing,
@@ -708,19 +708,19 @@ namespace Library
         [StatDescription(Title = "冰冻伤害", Format = "{0}", Mode = StatType.Default)]
         FrostBiteDamage,
 
-        [StatDescription(Title = "Max Regular Monster's Base Experience", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础经验最大倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MaxMonsterExperience,
 
-        [StatDescription(Title = "Max Regular Monster's Base Gold", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础金币最大倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MaxMonsterGold,
 
-        [StatDescription(Title = "Max Regular Monster's Base Drop Rate", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础掉落最大倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MaxMonsterDrop,
 
-        [StatDescription(Title = "Max Regular Monster's Base Damage", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础伤害最大倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MaxMonsterDamage,
 
-        [StatDescription(Title = "Max Regular Monster's Base Health", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "普通怪物基础生命最大倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MaxMonsterHealth,
 
         [StatDescription(Title = "暴击伤害 (PvE)", Format = "x{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
@@ -729,7 +729,7 @@ namespace Library
         [StatDescription(Title = "经验", Format = "{0}", Mode = StatType.Default)]
         Experience,
 
-        [StatDescription(Title = "Death Drops Enabled.", Mode = StatType.Text)]
+        [StatDescription(Title = "死亡后会掉落物品.", Mode = StatType.Text)]
         DeathDrops,
 
         [StatDescription(Title = "物理抗性", Format = "{0:+#0;-#0;#0}", Mode = StatType.ElementResistance)]
@@ -738,7 +738,7 @@ namespace Library
         [StatDescription(Title = "每个碎片的成功几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         FragmentRate,
 
-        [StatDescription(Title = "Chance to summon map ", Mode = StatType.Text)]
+        [StatDescription(Title = "召唤地图的几率 ", Mode = StatType.Text)]
         MapSummoning,
 
         [StatDescription(Title = "最大冰冻伤害", Format = "{0}", Mode = StatType.Default)]

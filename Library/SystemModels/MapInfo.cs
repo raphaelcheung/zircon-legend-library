@@ -397,7 +397,18 @@ namespace Library.SystemModels
         }
         private int _MaxGoldRate;
         
-        
+        public bool Valid
+        {
+            get => _Valid;
+            set
+            {
+                if (_Valid == value) return;
+                var oldValue = _Valid;
+                _Valid = value;
+                OnChanged(oldValue, value, "Valid");
+            }
+        }
+        private bool _Valid = true;
 
         
         [Association("Guards", true)]

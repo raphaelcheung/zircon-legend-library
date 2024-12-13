@@ -51,18 +51,14 @@ namespace Library
 
     public enum MirDirection : byte
     {
-        Up = 0,
-        [Description("右上")]
-        UpRight = 1,
-        Right = 2,
-        [Description("右下")]
-        DownRight = 3,
-        Down = 4,
-        [Description("左下")]
-        DownLeft = 5,
-        Left = 6,
-        [Description("左上")]
-        UpLeft = 7
+        [Description("上")]  Up = 0,
+        [Description("右上")] UpRight = 1,
+        [Description("右")] Right = 2,
+        [Description("右下")] DownRight = 3,
+        [Description("下")] Down = 4,
+        [Description("左下")] DownLeft = 5,
+        [Description("左")] Left = 6,
+        [Description("左上")] UpLeft = 7
     }
 
     [Flags]
@@ -75,7 +71,7 @@ namespace Library
         [Description("刺客")] Assassin = 8,
         [Description("战士, 法师, 道士")]WarWizTao = Warrior | Wizard | Taoist,
         [Description("法师, 道士")]WizTao = Wizard | Taoist,
-        [Description("法师, 刺客")]AssWar = Warrior | Assassin,
+        [Description("战士, 刺客")]AssWar = Warrior | Assassin,
         [Description("战士, 法师, 道士, 刺客")] All = WarWizTao | Assassin
     }
 
@@ -306,10 +302,10 @@ namespace Library
         [Description("特殊精炼")]RefineSpecial,
         [Description("马甲")]HorseArmour,
         [Description("鲜花")] Flower,
-        [Description("Companion Food")]CompanionFood,
-        [Description("Companion Bag")]CompanionBag,
-        [Description("Companion Head")]CompanionHead,
-        [Description("Companion Back")]CompanionBack,
+        [Description("小伙伴食物")]CompanionFood,
+        [Description("小伙伴背包")]CompanionBag,
+        [Description("小伙伴头盔")]CompanionHead,
+        [Description("小伙伴背甲")]CompanionBack,
         [Description("系统")] System,
         [Description("套装组件")]ItemPart,
         [Description("徽章")] Emblem,
@@ -1017,23 +1013,19 @@ namespace Library
 
     public enum MarketPlaceSort
     {
-        Newest,
-        Oldest,
-        [Description("最高价格")]
-        HighestPrice,
-        [Description("最低价格")]
-        LowestPrice,
+        [Description("最新的")] Newest,
+        [Description("最早的")] Oldest,
+        [Description("最高价格")] HighestPrice,
+        [Description("最低价格")] LowestPrice,
     }
 
 
     public enum MarketPlaceStoreSort
     {
-        Alphabetical,
-        [Description("最高价格")]
-        HighestPrice,
-        [Description("最低价格")]
-        LowestPrice,
-        Favourite
+        [Description("名称")] Alphabetical,
+        [Description("最高价格")] HighestPrice,
+        [Description("最低价格")] LowestPrice,
+        [Description("喜好")] Favourite
     }
 
     public enum RefineType : byte

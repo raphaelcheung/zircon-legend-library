@@ -265,7 +265,7 @@ namespace MirDB
             if (File.Exists(UsersPath))
             {
                 var now = DateTime.Now;
-                if (now > BackupTime)
+                if (now > BackupTime && BackUpSpace < TimeSpan.MaxValue)
                 {
                     File.Move(UsersPath, UsersBackupPath + "Users " + ToBackUpFileName(now.ToLocalTime()) + Extention);
                     BackupTime = now + BackUpSpace;
