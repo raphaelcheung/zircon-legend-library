@@ -328,6 +328,11 @@ namespace Library
             [LibraryFile.Wood_Tilesc] = @"Data\Map Data\Wood\Tilesc.Zl",
             [LibraryFile.Wood_Wallsc] = @"Data\Map Data\Wood\Wallsc.Zl",
 
+
+            [LibraryFile.EquipEffect_Full] = @"Data\EquipEffect-Full.Zl",
+            [LibraryFile.EquipEffect_FullEx1] = @"Data\EquipEffect-FullEx1.Zl",
+            [LibraryFile.EquipEffect_FullEx2] = @"Data\EquipEffect-FullEx2.Zl",
+            [LibraryFile.EquipEffect_FullEx3] = @"Data\EquipEffect-FullEx3.Zl",
         };
 
         public static Dictionary<int, LibraryFile> KROrder = new Dictionary<int, LibraryFile>
@@ -715,5 +720,10 @@ namespace Library
         Wood_Tiles30c,
         Wood_Tilesc,
         Wood_Wallsc,
+
+        EquipEffect_Full,
+        EquipEffect_FullEx1,
+        EquipEffect_FullEx2,
+        EquipEffect_FullEx3,
     }
 }
