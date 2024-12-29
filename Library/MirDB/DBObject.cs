@@ -144,7 +144,7 @@ namespace MirDB
 
         public void Delete()
         {
-            if (Collection.ReadOnly) return;
+            if (Collection?.ReadOnly ?? true) return;
 
             PropertyChanged = null;
 
@@ -304,7 +304,7 @@ namespace MirDB
         public event PropertyChangedEventHandler PropertyChanged;
         protected internal virtual void OnChanged(object oldValue, object newValue, string propertyName)
         {
-            if (Collection.Session.Relationships == null)
+            if (Collection?.Session?.Relationships == null)
                 IsModified = true;
 
             if (oldValue is DBObject || newValue is DBObject)
