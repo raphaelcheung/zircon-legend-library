@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
@@ -9,6 +10,47 @@ namespace MirDB
 {
     public abstract class DBObject : INotifyPropertyChanged
     {
+        #region 内存统计
+        private class ObjectCounter
+        {
+            private ObjectCounter() { }
+            public ObjectCounter(Type t)
+            {
+                type = t;
+                counter = 0;
+            }
+            public Type type { get; private set; }
+            public ulong counter {  get; private set; }
+            public void Add() { counter++; }
+            public void Sub() { if (counter > 0) counter--; }
+        }
+        private static Dictionary<Type, ObjectCounter> dictCounters = new Dictionary<Type, ObjectCounter>();
+
+        static DBObject()
+        {
+            List<Type> types = new List<Type>();
+            types.AddRange(Assembly.GetExecutingAssembly().GetTypes());
+            types.AddRange(Assembly.GetEntryAssembly().GetTypes());
+            types.AddRange(Assembly.GetCallingAssembly().GetTypes());
+
+            foreach (var t in types)
+            {
+                if (!t.IsSubclassOf(typeof(DBObject)) || dictCounters.ContainsKey(t)) continue;
+                dictCounters.Add(t, new ObjectCounter(t));
+            }
+        }
+
+        public static NameValueCollection GetCounters()
+        {
+            NameValueCollection result = new NameValueCollection();
+            foreach (var t in dictCounters.Values)
+                result.Add(t.type.Name, $"{t.counter}");
+
+            return result;
+        }
+
+        #endregion
+
         public int Index { get; internal set; }
 
         [IgnoreProperty]
@@ -48,6 +90,14 @@ namespace MirDB
         protected DBObject()
         {
             ThisType = GetType();
+            if (dictCounters.TryGetValue(ThisType, out var counter))
+                counter.Add();
+        }
+
+        ~DBObject()
+        {
+            if (dictCounters.TryGetValue(ThisType, out var counter))
+                counter.Sub();
         }
 
         internal void Load(DBMapping mapping)
