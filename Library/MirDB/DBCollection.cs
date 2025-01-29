@@ -155,7 +155,7 @@ namespace MirDB
 
         }
 
-
+        public void Delete(int index) { if (index >= 0) Binding.RemoveAt(index); }
         internal override void Delete(DBObject ob)
         {
             /* for (int i = Binding.Count - 1; i >= 0; i--)

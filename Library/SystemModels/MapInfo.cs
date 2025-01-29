@@ -4,6 +4,10 @@ namespace Library.SystemModels
 {
     public sealed class MapInfo : DBObject
     {
+        public override string ToString()
+        {
+            return Description;
+        }
         public string FileName
         {
             get { return _FileName; }

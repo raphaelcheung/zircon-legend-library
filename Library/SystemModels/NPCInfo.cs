@@ -613,6 +613,12 @@ namespace Library.SystemModels
 
         WeaponAddedStats,
         WeaponLevelFull,
+        Rebirth,
+        HasZuolian,
+        ZuolianAddedStats,
+        HasShield,
+        ShieldAddedStats,
+        ShengWang,
     }
     public enum Operator
     {
@@ -642,6 +648,12 @@ namespace Library.SystemModels
         GiveItemExperience,
 
         SpecialRefine,
-        Rebirth
+        Rebirth,
+
+        GiveGamegold,
+        GiveHuntgold,
+        ZuolianYunling,
+        SheildRefine,
+        GiveShengwang,
     }
 }

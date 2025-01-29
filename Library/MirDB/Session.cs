@@ -310,11 +310,12 @@ namespace MirDB
 
             return $"{time.Year:0000}-{time.Month:00}-{time.Day:00} {time.Hour:00}-{time.Minute:00}-{time.Second:00}";
         }
-        internal void Delete(DBObject ob)
+        internal void Delete(DBObject ob, bool fast = false)
         {
             if (ob.IsDeleted) return;
 
-            Collections[ob.ThisType].Delete(ob);
+            if (!fast)
+                Collections[ob.ThisType].Delete(ob);
 
             ob.OnDeleted();
 

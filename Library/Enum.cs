@@ -368,14 +368,14 @@ namespace Library
         HorseWalking,
         HorseRunning,
         HorseStruck,
-
         StoneStanding,
         DragonRepulseStart,
         DragonRepulseMiddle,
         DragonRepulseEnd,
-
+        ChannellingStart,
+        ChannellingMiddle,
+        ChannellingEnd,
     }
-    
 
     public enum MessageAction
     {
@@ -417,6 +417,7 @@ namespace Library
         AccessoryRefineLevel,
         AccessoryReset,
         WeaponCraft,
+        KuijiaFenjie,
     }
 
     public enum MagicSchool
@@ -577,46 +578,46 @@ namespace Library
         Infection = 338,                //传染
         DemonicRecovery = 339,          //恶魔的复苏
 
-        WillowDance = 401,
-        VineTreeDance = 402,
-        Discipline = 403,
-        PoisonousCloud = 404,
-        FullBloom = 405,
-        Cloak = 406,
-        WhiteLotus = 407,
-        CalamityOfFullMoon = 408,
-        WraithGrip = 409,
-        RedLotus = 410,
-        HellFire = 411,
-        PledgeOfBlood = 412,
-        Rake = 413,
-        SweetBrier = 414,
-        SummonPuppet = 415,
-        Karma = 416,
-        TouchOfTheDeparted = 417,
-        WaningMoon = 418,
-        GhostWalk = 419,
-        ElementalPuppet = 420,
-        Rejuvenation = 421,
-        Resolution = 422,
-        ChangeOfSeasons = 423,
-        Release = 424,
-        FlameSplash = 425,
-        BloodyFlower = 426,
-        TheNewBeginning = 427,
-        DanceOfSwallow = 428,
-        DarkConversion = 429,
-        DragonRepulse = 430,
-        AdventOfDemon = 431,
-        AdventOfDevil = 432,
-        Abyss = 433,
-        FlashOfLight = 434,
-        Stealth = 435,
-        Evasion = 436,
-        RagingWind = 437,
-        AdvancedBloodyFlower = 438,
-        Massacre = 439,
-        ArtOfShadows = 440,
+        WillowDance = 401,              //垂柳舞
+        VineTreeDance = 402,            //蔓藤舞
+        Discipline = 403,               //锋刀术
+        PoisonousCloud = 404,           //鬼雾
+        FullBloom = 405,                //盛开
+        Cloak = 406,                    //潜行
+        WhiteLotus = 407,               //白莲
+        CalamityOfFullMoon = 408,       //满月饿狼
+        WraithGrip = 409,               //亡灵束缚
+        RedLotus = 410,                 //红莲
+        HellFire = 411,                 //惩罚
+        PledgeOfBlood = 412,            //血禅
+        Rake = 413,                     //血盟
+        SweetBrier = 414,               //暗灭茶花
+        SummonPuppet = 415,             //亡灵替身
+        Karma = 416,                    //孽报
+        TouchOfTheDeparted = 417,       //亡灵掌握
+        WaningMoon = 418,               //残月乱鸦
+        GhostWalk = 419,                //鬼灵步
+        ElementalPuppet = 420,          //神机妙算
+        Rejuvenation = 421,             //长生诀
+        Resolution = 422,               //结义
+        ChangeOfSeasons = 423,          //心机一转
+        Release = 424,                  //顽强
+        FlameSplash = 425,              //朔月炎龙
+        BloodyFlower = 426,             //百花盛开
+        TheNewBeginning = 427,          //心击一战
+        DanceOfSwallow = 428,           //鹰击蝶舞
+        DarkConversion = 429,           //暗黑转换
+        DragonRepulse = 430,            //星云锁链
+        AdventOfDemon = 431,            //修罗降临
+        AdventOfDevil = 432,            //罗刹降临
+        Abyss = 433,                    //深渊苦海
+        FlashOfLight = 434,             //一闪
+        Stealth = 435,                  //银轮
+        Evasion = 436,                  //疾风
+        RagingWind = 437,               //狂风
+        AdvancedBloodyFlower = 438,     //高级百花盛开
+        Massacre = 439,                 //讨伐
+        ArtOfShadows = 440,             //影魅乱舞
 
         MonsterScortchedEarth = 501,
         MonsterIceStorm = 502,
@@ -647,14 +648,16 @@ namespace Library
         PinkFireBall = 530,
         GreenSludgeBall = 540,
 
+        IgyuScorchedEarth = 552, // 0x00000228
+        IgyuCyclone = 553, // 0x00000229
+        Qierbian = 554, // 0x0000022A
     }
+
 
     public enum MonsterImage
     {
         None,
-
         Guard,
-
         Chicken,
         Pig,
         Deer,
@@ -670,7 +673,6 @@ namespace Library
         SpittingSpider,
         Scarecrow,
         OmaHero,
-
         CaveBat,
         Scorpion,
         Skeleton,
@@ -678,7 +680,6 @@ namespace Library
         SkeletonAxeThrower,
         SkeletonWarrior,
         SkeletonLord,
-
         CaveMaggot,
         GhostSorcerer,
         GhostMage,
@@ -686,20 +687,16 @@ namespace Library
         DevouringGhost,
         CorpseRaisingGhost,
         GhoulChampion,
-
         ArmoredAnt,
         AntSoldier,
         AntHealer,
         AntNeedler,
-
         ShellNipper,
         Beetle,
         VisceralWorm,
-
         MutantFlea,
         PoisonousMutantFlea,
         BlasterMutantFlea,
-
         WasHatchling,
         Centipede,
         ButterflyWorm,
@@ -707,17 +704,14 @@ namespace Library
         Earwig,
         IronLance,
         LordNiJae,
-
         RottingGhoul,
         DecayingGhoul,
         BloodThirstyGhoul,
-
         SpinedDarkLizard,
         UmaInfidel,
         UmaFlameThrower,
         UmaAnguisher,
         UmaKing,
-
         SpiderBat,
         ArachnidGazer,
         Larva,
@@ -726,18 +720,15 @@ namespace Library
         VenomousArachnid,
         DarkArachnid,
         RedMoonTheFallen,
-
         ZumaSharpShooter,
         ZumaFanatic,
         ZumaGuardian,
         ViciousRat,
         ZumaKing,
-
         EvilFanatic,
         Monkey,
         EvilElephant,
         CannibalFanatic,
-
         SpikedBeetle,
         NumaGrunt,
         NumaMage,
@@ -747,7 +738,6 @@ namespace Library
         WindfurySorceress,
         CursedCactus,
         NetherWorldGate,
-
         RagingLizard,
         SawToothLizard,
         MutantLizard,
@@ -757,7 +747,6 @@ namespace Library
         CrazedLizard,
         TaintedTerror,
         DeathLordJichon,
-
         Minotaur,
         FrostMinotaur,
         ShockMinotaur,
@@ -766,13 +755,11 @@ namespace Library
         BanyaLeftGuard,
         BanyaRightGuard,
         EmperorSaWoo,
-
         BoneArcher,
         BoneBladesman,
         BoneCaptain,
         BoneSoldier,
         ArchLichTaedu,
-
         WedgeMothLarva,
         LesserWedgeMoth,
         WedgeMoth,
@@ -781,19 +768,16 @@ namespace Library
         BlackBoar,
         TuskLord,
         RazorTusk,
-
         PinkGoddess,
         GreenGoddess,
         MutantCaptain,
         StoneGriffin,
         FlameGriffin,
-
         WhiteBone,
         Shinsu,
         InfernalSoldier,
         InfernalGuardian,
         InfernalWarrior,
-
         CorpseStalker,
         LightArmedSoldier,
         CorrosivePoisonSpitter,
@@ -804,13 +788,11 @@ namespace Library
         CrimsonNecromancer,
         ChaosKnight,
         PachonTheChaosBringer,
-
         NumaCavalry,
         NumaHighMage,
         NumaStoneThrower,
         NumaRoyalGuard,
         NumaArmoredSoldier,
-
         IcyRanger,
         IcyGoddess,
         IcySpiritWarrior,
@@ -823,7 +805,6 @@ namespace Library
         WildBoar,
         JinamStoneGate,
         FrostLordHwa,
-
         Companion_Pig,
         Companion_TuskLord,
         Companion_SkeletonLord,
@@ -834,15 +815,12 @@ namespace Library
         Companion_BanyoLordGuzak,
         Companion_Panda,
         Companion_Rabbit,
-
         JinchonDevil,
         OmaWarlord,
-
         EscortCommander,
         FieryDancer,
         EmeraldDancer,
         QueenOfDawn,
-
         OYoungBeast,
         YumgonWitch,
         MaWarlord,
@@ -852,9 +830,7 @@ namespace Library
         ChiwooGeneral,
         DragonQueen,
         DragonLord,
-
         FerociousIceTiger,
-
         SamaFireGuardian,
         SamaIceGuardian,
         SamaLightningGuardian,
@@ -870,7 +846,6 @@ namespace Library
         SamaSorcerer,
         EnshrinementBox,
         BloodStone,
-
         OrangeTiger,
         RegularTiger,
         RedTiger,
@@ -882,7 +857,6 @@ namespace Library
         BigBossTiger,
         WildMonkey,
         FrostYeti,
-
         EvilSnake,
         Salamander,
         SandGolem,
@@ -911,10 +885,8 @@ namespace Library
         GangSpider,
         VenomSpider,
         SDMob26,
-
         LobsterLord,
         LobsterSpawn,
-
         NewMob1,
         NewMob2,
         NewMob3,
@@ -925,7 +897,6 @@ namespace Library
         NewMob8,
         NewMob9,
         NewMob10,
-
         MonasteryMon0,
         MonasteryMon1,
         MonasteryMon2,
@@ -933,9 +904,97 @@ namespace Library
         MonasteryMon4,
         MonasteryMon5,
         MonasteryMon6,
+        Taishan01,
+        Taishan02,
+        Taishan03,
+        Taishan04,
+        Taishan05,
+        Taishan06,
+        Taishan07,
+        Yuehe00,
+        Yuehe01,
+        Yuehe02,
+        Yuehe03,
+        Yuehe04,
+        Yuehe05,
+        Yuehe06,
+        Dashewan,
+        GardenSoldier,
+        GardenDefender,
+        RedBlossom,
+        BlueBlossom,
+        FireBird,
+        Taohua06,
+        Taohua07,
+        Taohua08,
+        Taohua09,
+        Benma01,
+        Benma02,
+        Benma03,
+        Qinling01,
+        Qinling02,
+        Qinling03,
+        Qinling04,
+        Qinling05,
+        Qinling06,
+        Qinling07,
+        Qinling08,
+        Qinling09,
+        Qinling10,
+        Companion_Snow,
+        CrazedPrimate,
+        HellBringer,
+        YurinMon0,
+        YurinMon1,
+        WhiteBeardedTiger,
+        BlackBeardedTiger,
+        HardenedRhino,
+        Mammoth,
+        CursedSlave1,
+        CursedSlave2,
+        CursedSlave3,
+        PoisonousGolem,
+        Huanjingsamll,
+        Huolong,
+        Luwang,
+        Yangling,
+        Zhandouji,
+        Wolong1,
+        Wolong2,
+        Wolong3,
+        Wolong4,
+        Wolong5,
+        ShengdanMan,
+        ShengdanTree,
+        Haidi01,
+        Haidi02,
+        Haidi03,
+        Haidi04,
+        Haidi05,
+        Haidi06,
+        Haidi07,
+        Zhangyu,
+        Yanhua,
+        Nian,
+        Bindu,
+        Qitiandashen,
+        NewSenlingXueren,
+        红狐,
+        白狐,
+        黄狐,
+        镜中仙,
+        五雷使,
+        白泽,
+        混沌,
+        Mon63_1,
+        Mon63_2,
+        Mon63_5,
+        Mon63_6,
+        Mon63_7,
+        Mon63_8,
+        Mon63_9,
     }
 
-    
     public enum MapIcon
     {
         None,
@@ -1009,6 +1068,9 @@ namespace Library
         Rubble,
 
         MonsterDeathCloud,
+
+        QierBian,
+
     }
 
     public enum MarketPlaceSort
@@ -1447,8 +1509,6 @@ namespace Library
         None,
         LoginScene,
         SelectScene,
-
-        // ProvinceMusic,
         B000,
         B2,
         B8,
@@ -1487,11 +1547,21 @@ namespace Library
         TS001,
         TS002,
         TS003,
-
+        Caomiaocun,
+        Xueyuan,
+        Kunlun,
+        Taishan,
+        Saiwai,
+        Benmadao,
+        Qinling,
+        Zhenyuan,
+        Huanjing,
+        WolongMusic,
+        ChristmasSong,
+        TaoyuanMusic,
         ButtonA,
         ButtonB,
         ButtonC,
-
         SelectWarriorMale,
         SelectWarriorFemale,
         SelectWizardMale,
@@ -1500,10 +1570,8 @@ namespace Library
         SelectTaoistFemale,
         SelectAssassinMale,
         SelectAssassinFemale,
-
         TeleportOut,
         TeleportIn,
-
         ItemPotion,
         ItemWeapon,
         ItemArmour,
@@ -1513,10 +1581,8 @@ namespace Library
         ItemHelmet,
         ItemShoes,
         ItemDefault,
-
         GoldPickUp,
         GoldGained,
-
         DaggerSwing,
         WoodSwing,
         IronSwordSwing,
@@ -1527,10 +1593,8 @@ namespace Library
         FistSwing,
         GlaiveAttack,
         ClawAttack,
-
         GenericStruckPlayer,
         GenericStruckMonster,
-
         Foot1,
         Foot2,
         Foot3,
@@ -1538,856 +1602,677 @@ namespace Library
         HorseWalk1,
         HorseWalk2,
         HorseRun,
-
         MaleStruck,
         FemaleStruck,
-
         MaleDie,
         FemaleDie,
-
-        #region Magics
-
         SlayingMale,
         SlayingFemale,
-
         EnergyBlast,
-
         HalfMoon,
-
         FlamingSword,
-
         DragonRise,
-
         BladeStorm,
-
         DestructiveBlow,
-
         DefianceStart,
-
         AssaultStart,
-
         SwiftBladeEnd,
-
-
+        CrushingWave,
         FireBallStart,
         FireBallTravel,
         FireBallEnd,
-
         ThunderBoltStart,
         ThunderBoltTravel,
         ThunderBoltEnd,
-
         IceBoltStart,
         IceBoltTravel,
         IceBoltEnd,
-
         GustBlastStart,
         GustBlastTravel,
         GustBlastEnd,
-
         RepulsionEnd,
-
         ElectricShockStart,
         ElectricShockEnd,
-
         GreaterFireBallStart,
         GreaterFireBallTravel,
         GreaterFireBallEnd,
-
         LightningStrikeStart,
         LightningStrikeEnd,
-
         GreaterIceBoltStart,
         GreaterIceBoltTravel,
         GreaterIceBoltEnd,
-
         CycloneStart,
         CycloneEnd,
-
         TeleportationStart,
-
         LavaStrikeStart,
-        // LavaStrikeEnd,
-
         LightningBeamEnd,
-
-
         FrozenEarthStart,
         FrozenEarthEnd,
-
         BlowEarthStart,
         BlowEarthEnd,
         BlowEarthTravel,
-
         FireWallStart,
         FireWallEnd,
-
         ExpelUndeadStart,
         ExpelUndeadEnd,
-
         MagicShieldStart,
-
         FireStormStart,
         FireStormEnd,
-
         LightningWaveStart,
         LightningWaveEnd,
-
         IceStormStart,
         IceStormEnd,
-
         DragonTornadoStart,
         DragonTornadoEnd,
-
         GreaterFrozenEarthStart,
         GreaterFrozenEarthEnd,
-
         ChainLightningStart,
         ChainLightningEnd,
-
         FrostBiteStart,
-
-
+        ElementalHurricane,
         HealStart,
         HealEnd,
-
         PoisonDustStart,
         PoisonDustEnd,
-
         ExplosiveTalismanStart,
         ExplosiveTalismanTravel,
         ExplosiveTalismanEnd,
-
         HolyStrikeStart,
         HolyStrikeTravel,
         HolyStrikeEnd,
-
         ImprovedHolyStrikeStart,
         ImprovedHolyStrikeTravel,
         ImprovedHolyStrikeEnd,
-
         MagicResistanceTravel,
         MagicResistanceEnd,
-
         ResilienceTravel,
         ResilienceEnd,
-
         ShacklingTalismanStart,
         ShacklingTalismanEnd,
-
         SummonSkeletonStart,
         SummonSkeletonEnd,
-
         InvisibilityEnd,
-
         MassInvisibilityTravel,
         MassInvisibilityEnd,
-
         TaoistCombatKickStart,
-
         MassHealStart,
         MassHealEnd,
-
         BloodLustTravel,
         BloodLustEnd,
-
         ResurrectionStart,
-
         PurificationStart,
         PurificationEnd,
-
         SummonShinsuStart,
         SummonShinsuEnd,
-
         StrengthOfFaithStart,
         StrengthOfFaithEnd,
-
-
+        NeutralizeEnd,
+        DarkSoulPrison,
         PoisonousCloudStart,
-
         CloakStart,
-
         WraithGripStart,
         WraithGripEnd,
-
         HellFireStart,
-
         FullBloom,
         WhiteLotus,
         RedLotus,
         SweetBrier,
         SweetBrierMale,
         SweetBrierFemale,
-
         Karma,
-
         TheNewBeginning,
-
         SummonPuppet,
-
         DanceOfSwallowsEnd,
         DragonRepulseStart,
         AbyssStart,
         FlashOfLightEnd,
         EvasionStart,
         RagingWindStart,
-
-        #endregion
-
-        #region Monsters
-
+        Concentration,
+        XuanfengZhan,
+        Xuanlonghuansha,
+        Xuanlonghuansha1,
+        Laosunlaiye,
         ChickenAttack,
         ChickenStruck,
         ChickenDie,
-
         PigAttack,
         PigStruck,
         PigDie,
-
         DeerAttack,
         DeerStruck,
         DeerDie,
-
         CowAttack,
         CowStruck,
         CowDie,
-
         SheepAttack,
         SheepStruck,
         SheepDie,
-
         ClawCatAttack,
         ClawCatStruck,
         ClawCatDie,
-
         WolfAttack,
         WolfStruck,
         WolfDie,
-
         ForestYetiAttack,
         ForestYetiStruck,
         ForestYetiDie,
-
         CarnivorousPlantAttack,
         CarnivorousPlantStruck,
         CarnivorousPlantDie,
-
         OmaAttack,
         OmaStruck,
         OmaDie,
-
         TigerSnakeAttack,
         TigerSnakeStruck,
         TigerSnakeDie,
-
         SpittingSpiderAttack,
         SpittingSpiderStruck,
         SpittingSpiderDie,
-
         ScarecrowAttack,
         ScarecrowStruck,
         ScarecrowDie,
-
         OmaHeroAttack,
         OmaHeroStruck,
         OmaHeroDie,
-
         CaveBatAttack,
         CaveBatStruck,
         CaveBatDie,
-
         ScorpionAttack,
         ScorpionStruck,
         ScorpionDie,
-
         SkeletonAttack,
         SkeletonStruck,
         SkeletonDie,
-
         SkeletonAxeManAttack,
         SkeletonAxeManStruck,
         SkeletonAxeManDie,
-
         SkeletonAxeThrowerAttack,
         SkeletonAxeThrowerStruck,
         SkeletonAxeThrowerDie,
-
         SkeletonWarriorAttack,
         SkeletonWarriorStruck,
         SkeletonWarriorDie,
-
         SkeletonLordAttack,
         SkeletonLordStruck,
         SkeletonLordDie,
-
         CaveMaggotAttack,
         CaveMaggotStruck,
         CaveMaggotDie,
-
         GhostSorcererAttack,
         GhostSorcererStruck,
         GhostSorcererDie,
-
         GhostMageAppear,
         GhostMageAttack,
         GhostMageStruck,
         GhostMageDie,
-
         VoraciousGhostAttack,
         VoraciousGhostStruck,
         VoraciousGhostDie,
-
         GhoulChampionAttack,
         GhoulChampionStruck,
         GhoulChampionDie,
-
         ArmoredAntAttack,
         ArmoredAntStruck,
         ArmoredAntDie,
-
         AntNeedlerAttack,
         AntNeedlerStruck,
         AntNeedlerDie,
-
-
         KeratoidAttack,
         KeratoidStruck,
         KeratoidDie,
-
         ShellNipperAttack,
         ShellNipperStruck,
         ShellNipperDie,
-
         VisceralWormAttack,
         VisceralWormStruck,
         VisceralWormDie,
-
-
         MutantFleaAttack,
         MutantFleaStruck,
         MutantFleaDie,
-
         PoisonousMutantFleaAttack,
         PoisonousMutantFleaStruck,
         PoisonousMutantFleaDie,
-
         BlasterMutantFleaAttack,
         BlasterMutantFleaStruck,
         BlasterMutantFleaDie,
-
-
         WasHatchlingAttack,
         WasHatchlingStruck,
         WasHatchlingDie,
-
         CentipedeAttack,
         CentipedeStruck,
         CentipedeDie,
-
         ButterflyWormAttack,
         ButterflyWormStruck,
         ButterflyWormDie,
-
         MutantMaggotAttack,
         MutantMaggotStruck,
         MutantMaggotDie,
-
         EarwigAttack,
         EarwigStruck,
         EarwigDie,
-
         IronLanceAttack,
         IronLanceStruck,
         IronLanceDie,
-
         LordNiJaeAttack,
         LordNiJaeStruck,
         LordNiJaeDie,
-
         RottingGhoulAttack,
         RottingGhoulStruck,
         RottingGhoulDie,
-
         DecayingGhoulAttack,
         DecayingGhoulStruck,
         DecayingGhoulDie,
-
         BloodThirstyGhoulAttack,
         BloodThirstyGhoulStruck,
         BloodThirstyGhoulDie,
-
-
         SpinedDarkLizardAttack,
         SpinedDarkLizardStruck,
         SpinedDarkLizardDie,
-
         UmaInfidelAttack,
         UmaInfidelStruck,
         UmaInfidelDie,
-
         UmaFlameThrowerAttack,
         UmaFlameThrowerStruck,
         UmaFlameThrowerDie,
-
         UmaAnguisherAttack,
         UmaAnguisherStruck,
         UmaAnguisherDie,
-
         UmaKingAttack,
         UmaKingStruck,
         UmaKingDie,
-
         SpiderBatAttack,
         SpiderBatStruck,
         SpiderBatDie,
-
         ArachnidGazerStruck,
         ArachnidGazerDie,
-
         LarvaAttack,
         LarvaStruck,
-
         RedMoonGuardianAttack,
         RedMoonGuardianStruck,
         RedMoonGuardianDie,
-
         RedMoonProtectorAttack,
         RedMoonProtectorStruck,
         RedMoonProtectorDie,
-
         VenomousArachnidAttack,
         VenomousArachnidStruck,
         VenomousArachnidDie,
-
         DarkArachnidAttack,
         DarkArachnidStruck,
         DarkArachnidDie,
-
         RedMoonTheFallenAttack,
         RedMoonTheFallenStruck,
         RedMoonTheFallenDie,
-
-
         ViciousRatAttack,
         ViciousRatStruck,
         ViciousRatDie,
-
         ZumaSharpShooterAttack,
         ZumaSharpShooterStruck,
         ZumaSharpShooterDie,
-
         ZumaFanaticAttack,
         ZumaFanaticStruck,
         ZumaFanaticDie,
-
         ZumaGuardianAttack,
         ZumaGuardianStruck,
         ZumaGuardianDie,
-
         ZumaKingAppear,
         ZumaKingAttack,
         ZumaKingStruck,
         ZumaKingDie,
-
         EvilFanaticAttack,
         EvilFanaticStruck,
         EvilFanaticDie,
-
         MonkeyAttack,
         MonkeyStruck,
         MonkeyDie,
-
         EvilElephantAttack,
         EvilElephantStruck,
         EvilElephantDie,
-
         CannibalFanaticAttack,
         CannibalFanaticStruck,
         CannibalFanaticDie,
-
         SpikedBeetleAttack,
         SpikedBeetleStruck,
         SpikedBeetleDie,
-
         NumaGruntAttack,
         NumaGruntStruck,
         NumaGruntDie,
-
         NumaMageAttack,
         NumaMageStruck,
         NumaMageDie,
-
         NumaEliteAttack,
         NumaEliteStruck,
         NumaEliteDie,
-
         SandSharkAttack,
         SandSharkStruck,
         SandSharkDie,
-
         StoneGolemAppear,
         StoneGolemAttack,
         StoneGolemStruck,
         StoneGolemDie,
-
         WindfurySorceressAttack,
         WindfurySorceressStruck,
         WindfurySorceressDie,
-
         CursedCactusAttack,
         CursedCactusStruck,
         CursedCactusDie,
-
         RagingLizardAttack,
         RagingLizardStruck,
         RagingLizardDie,
-
         SawToothLizardAttack,
         SawToothLizardStruck,
         SawToothLizardDie,
-
         MutantLizardAttack,
         MutantLizardStruck,
         MutantLizardDie,
-
         VenomSpitterAttack,
         VenomSpitterStruck,
         VenomSpitterDie,
-
         SonicLizardAttack,
         SonicLizardStruck,
         SonicLizardDie,
-
         GiantLizardAttack,
         GiantLizardStruck,
         GiantLizardDie,
-
         CrazedLizardAttack,
         CrazedLizardStruck,
         CrazedLizardDie,
-
         TaintedTerrorAttack,
         TaintedTerrorStruck,
         TaintedTerrorDie,
         TaintedTerrorAttack2,
-
         DeathLordJichonAttack,
         DeathLordJichonStruck,
         DeathLordJichonDie,
         DeathLordJichonAttack2,
         DeathLordJichonAttack3,
-
-
         MinotaurAttack,
         MinotaurStruck,
         MinotaurDie,
-
         FrostMinotaurAttack,
         FrostMinotaurStruck,
         FrostMinotaurDie,
-
         BanyaLeftGuardAttack,
         BanyaLeftGuardStruck,
         BanyaLeftGuardDie,
-
         EmperorSaWooAttack,
         EmperorSaWooStruck,
         EmperorSaWooDie,
-
-
-
         BoneArcherAttack,
         BoneArcherStruck,
         BoneArcherDie,
-
         BoneCaptainAttack,
         BoneCaptainStruck,
         BoneCaptainDie,
-
         ArchLichTaeduAttack,
         ArchLichTaeduStruck,
         ArchLichTaeduDie,
-
         WedgeMothLarvaAttack,
         WedgeMothLarvaStruck,
         WedgeMothLarvaDie,
-
         LesserWedgeMothAttack,
         LesserWedgeMothStruck,
         LesserWedgeMothDie,
-
         WedgeMothAttack,
         WedgeMothStruck,
         WedgeMothDie,
-
         RedBoarAttack,
         RedBoarStruck,
         RedBoarDie,
-
         ClawSerpentAttack,
         ClawSerpentStruck,
         ClawSerpentDie,
-
         BlackBoarAttack,
         BlackBoarStruck,
         BlackBoarDie,
-
         TuskLordAttack,
         TuskLordStruck,
         TuskLordDie,
-
         RazorTuskAttack,
         RazorTuskStruck,
         RazorTuskDie,
-
-
         PinkGoddessAttack,
         PinkGoddessStruck,
         PinkGoddessDie,
-
         GreenGoddessAttack,
         GreenGoddessStruck,
         GreenGoddessDie,
-
         MutantCaptainAttack,
         MutantCaptainStruck,
         MutantCaptainDie,
-
         StoneGriffinAttack,
         StoneGriffinStruck,
         StoneGriffinDie,
-
         FlameGriffinAttack,
         FlameGriffinStruck,
         FlameGriffinDie,
-
         WhiteBoneAttack,
         WhiteBoneStruck,
         WhiteBoneDie,
-
         ShinsuSmallStruck,
         ShinsuSmallDie,
-
         ShinsuBigAttack,
         ShinsuBigStruck,
         ShinsuBigDie,
-
         ShinsuShow,
-
-
         CorpseStalkerAttack,
         CorpseStalkerStruck,
         CorpseStalkerDie,
-
         LightArmedSoldierAttack,
         LightArmedSoldierStruck,
         LightArmedSoldierDie,
-
         CorrosivePoisonSpitterAttack,
         CorrosivePoisonSpitterStruck,
         CorrosivePoisonSpitterDie,
-
         PhantomSoldierAttack,
         PhantomSoldierStruck,
         PhantomSoldierDie,
-
         MutatedOctopusAttack,
         MutatedOctopusStruck,
         MutatedOctopusDie,
-
         AquaLizardAttack,
         AquaLizardStruck,
         AquaLizardDie,
-
-
         CrimsonNecromancerAttack,
         CrimsonNecromancerStruck,
         CrimsonNecromancerDie,
-
         ChaosKnightAttack,
         ChaosKnightStruck,
         ChaosKnightDie,
-
         PachontheChaosbringerAttack,
         PachontheChaosbringerStruck,
         PachontheChaosbringerDie,
-
-
         NumaCavalryAttack,
         NumaCavalryStruck,
         NumaCavalryDie,
-
         NumaHighMageAttack,
         NumaHighMageStruck,
         NumaHighMageDie,
-
         NumaStoneThrowerAttack,
         NumaStoneThrowerStruck,
         NumaStoneThrowerDie,
-
         NumaRoyalGuardAttack,
         NumaRoyalGuardStruck,
         NumaRoyalGuardDie,
-
         NumaArmoredSoldierAttack,
         NumaArmoredSoldierStruck,
         NumaArmoredSoldierDie,
-
-
-
         IcyRangerAttack,
         IcyRangerStruck,
         IcyRangerDie,
-
         IcyGoddessAttack,
         IcyGoddessStruck,
         IcyGoddessDie,
-
         IcySpiritWarriorAttack,
         IcySpiritWarriorStruck,
         IcySpiritWarriorDie,
-
         IcySpiritGeneralAttack,
         IcySpiritGeneralStruck,
         IcySpiritGeneralDie,
-
         GhostKnightAttack,
         GhostKnightStruck,
         GhostKnightDie,
-
         IcySpiritSpearmanAttack,
         IcySpiritSpearmanStruck,
         IcySpiritSpearmanDie,
-
         WerewolfAttack,
         WerewolfStruck,
         WerewolfDie,
-
         WhitefangAttack,
         WhitefangStruck,
         WhitefangDie,
-
         IcySpiritSoliderAttack,
         IcySpiritSoliderStruck,
         IcySpiritSoliderDie,
-
         WildBoarAttack,
         WildBoarStruck,
         WildBoarDie,
-
         FrostLordHwaAttack,
         FrostLordHwaStruck,
         FrostLordHwaDie,
-
         JinchonDevilAttack,
         JinchonDevilAttack2,
         JinchonDevilAttack3,
         JinchonDevilStruck,
         JinchonDevilDie,
-
         EscortCommanderAttack,
         EscortCommanderStruck,
         EscortCommanderDie,
-
         FieryDancerAttack,
         FieryDancerStruck,
         FieryDancerDie,
-
         EmeraldDancerAttack,
         EmeraldDancerStruck,
         EmeraldDancerDie,
-
         QueenOfDawnAttack,
         QueenOfDawnStruck,
         QueenOfDawnDie,
-
-
-
         OYoungBeastAttack,
         OYoungBeastStruck,
         OYoungBeastDie,
-
         YumgonWitchAttack,
         YumgonWitchStruck,
         YumgonWitchDie,
-
         MaWarlordAttack,
         MaWarlordStruck,
         MaWarlordDie,
-
         JinhwanSpiritAttack,
         JinhwanSpiritStruck,
         JinhwanSpiritDie,
-
         JinhwanGuardianAttack,
         JinhwanGuardianStruck,
         JinhwanGuardianDie,
-
         YumgonGeneralAttack,
         YumgonGeneralStruck,
         YumgonGeneralDie,
-
         ChiwooGeneralAttack,
         ChiwooGeneralStruck,
         ChiwooGeneralDie,
-
         DragonQueenAttack,
         DragonQueenStruck,
         DragonQueenDie,
-
         DragonLordAttack,
         DragonLordStruck,
         DragonLordDie,
-
         FerociousIceTigerAttack,
         FerociousIceTigerStruck,
         FerociousIceTigerDie,
-
-
-
         SamaFireGuardianAttack,
         SamaFireGuardianStruck,
         SamaFireGuardianDie,
-
         SamaIceGuardianAttack,
         SamaIceGuardianStruck,
         SamaIceGuardianDie,
-
         SamaLightningGuardianAttack,
         SamaLightningGuardianStruck,
         SamaLightningGuardianDie,
-
         SamaWindGuardianAttack,
         SamaWindGuardianStruck,
         SamaWindGuardianDie,
-
-
         PhoenixAttack,
         PhoenixStruck,
         PhoenixDie,
-
         BlackTortoiseAttack,
         BlackTortoiseStruck,
         BlackTortoiseDie,
-
         BlueDragonAttack,
         BlueDragonStruck,
         BlueDragonDie,
-
         WhiteTigerAttack,
         WhiteTigerStruck,
         WhiteTigerDie,
-
-
-
-
-        #endregion
-
+        GardenSoldierAttack,
+        GardenSoldierAttack2,
+        GardenSoldierStruck,
+        GardenSoldierDie,
+        GardenDefenderAttack,
+        GardenDefenderAttack2,
+        GardenDefenderStruck,
+        GardenDefenderDie,
+        RedBlossomAttack,
+        RedBlossomAttack2,
+        RedBlossomStruck,
+        RedBlossomDie,
+        BlueBlossomAttack,
+        BlueBlossomStruck,
+        BlueBlossomDie,
+        FireBirdAttack,
+        FireBirdAttack2,
+        FireBirdAttack3,
+        FireBirdStruck,
+        FireBirdDie,
+        CrazedPrimateAttack,
+        CrazedPrimateStruck,
+        CrazedPrimateDie,
+        HellBringerAttack,
+        HellBringerAttack2,
+        HellBringerAttack3,
+        HellBringerStruck,
+        HellBringerDie,
+        YurinHoundAttack,
+        YurinHoundStruck,
+        YurinHoundDie,
+        YurinTigerAttack,
+        YurinTigerStruck,
+        YurinTigerDie,
+        HardenedRhinoAttack,
+        HardenedRhinoStruck,
+        HardenedRhinoDie,
+        MammothAttack,
+        MammothStruck,
+        MammothDie,
+        CursedSlave1Attack,
+        CursedSlave1Attack2,
+        CursedSlave1Struck,
+        CursedSlave1Die,
+        CursedSlave2Attack,
+        CursedSlave2Struck,
+        CursedSlave2Die,
+        CursedSlave3Attack,
+        CursedSlave3Attack2,
+        CursedSlave3Struck,
+        CursedSlave3Die,
+        PoisonousGolemAttack,
+        PoisonousGolemAttack2,
+        PoisonousGolemStruck,
+        PoisonousGolemDie,
+        Qierbian,
         ThunderKickEnd,
-
         ThunderKickStart,
         RakeStart,
 
+        WolongbianfuAttack,
+        WolongbianfuAttack2,
+        WolongbianfuStruck,
+        WolongbianfuDie,
+        OmaKingAttack,
+        OmaKingAttack2,
+        OmaKingStruck,
+        OmaKingDie,
+        WuguiAttack,
+        WuguiAttack2,
+        WuguiStruck,
+        WuguiDie
     }
     #endregion
 

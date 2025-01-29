@@ -216,6 +216,76 @@ namespace Library.SystemModels
         }
         private MonsterFlag _Flag;
 
+        #region 新增
+
+        public int BodyShape
+        {
+            get => _BodyShape;
+            set
+            {
+                if (_BodyShape == value) return;
+                var oldValue = _BodyShape;
+                _BodyShape = value;
+                OnChanged(oldValue, value, "BodyShape");
+            }
+        }
+        private int _BodyShape;
+
+
+        public string LibraryFile
+        {
+            get => _LibraryFile;
+            set
+            {
+                if (_LibraryFile == value) return;
+                var oldValue = _LibraryFile;
+                _LibraryFile = value;
+                OnChanged(oldValue, value, "LibraryFile");
+            }
+        }
+        private string _LibraryFile = "";
+
+        public string AttackSoundFile
+        {
+            get => _AttackSoundFile;
+            set
+            {
+                if (_AttackSoundFile == value) return;
+                var oldValue = _AttackSoundFile;
+                _AttackSoundFile = value;
+                OnChanged(oldValue, value, "AttackSoundFile");
+            }
+        }
+        private string _AttackSoundFile = "";
+
+
+        public string StruckSoundFile
+        {
+            get => _StruckSoundFile;
+            set
+            {
+                if (_StruckSoundFile == value) return;
+                var oldValue = _StruckSoundFile;
+                _StruckSoundFile = value;
+                OnChanged(oldValue, value, "StruckSoundFile");
+            }
+        }
+        private string _StruckSoundFile = "";
+
+
+        public string DieSoundFile
+        {
+            get => _DieSoundFile;
+            set
+            {
+                if (_DieSoundFile == value) return;
+                var oldValue = _DieSoundFile;
+                _DieSoundFile = value;
+                OnChanged(oldValue, value, "DieSoundFile");
+            }
+        }
+        private string _DieSoundFile = "";
+        #endregion
 
         /*
         public MonsterEffect Effect
@@ -232,7 +302,7 @@ namespace Library.SystemModels
             }
         }
         private MonsterEffect _Effect;*/
-        
+
 
         [Association("MonsterInfoStats", true)]
         public DBBindingList<MonsterInfoStat> MonsterInfoStats { get; set; }

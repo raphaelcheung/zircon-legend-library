@@ -556,7 +556,7 @@ namespace Library
         [StatDescription(Title = "属性: 幻影", Mode = StatType.Text)]
         PhantomAffinity,
 
-        [StatDescription(Title = "反射伤害", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "伤害反弹", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         ReflectDamage,
 
         [StatDescription(Mode = StatType.None)]
@@ -566,7 +566,7 @@ namespace Library
         [StatDescription(Title = "生命", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         HealthPercent,
 
-        [StatDescription(Title = "暴击", Format = "{0:+#0;-#0;#0}%", Mode = StatType.Default)]
+        [StatDescription(Title = "暴击率", Format = "{0:+#0;-#0;#0}%", Mode = StatType.Default)]
         CriticalChance,
 
         [StatDescription(Title = "增加 5% 售价", Format = "{0} 或更多", Mode = StatType.Default)]
@@ -649,7 +649,7 @@ namespace Library
         [StatDescription(Title = "宠物 破坏力", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         PetDCPercent,
 
-        [StatDescription(Title = "在地图上定位 Boss 怪物", Mode = StatType.Text)]
+        [StatDescription(Title = "在地图上定位【Boss】级怪物", Mode = StatType.Text)]
         BossTracker,
         [StatDescription(Title = "在地图上定位玩家", Mode = StatType.Text)]
         PlayerTracker,
@@ -666,7 +666,7 @@ namespace Library
         [StatDescription(Title = "魔法", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         ManaPercent,
 
-        [StatDescription(Title = "召唤命令: @GroupRecall", Mode = StatType.Text)]
+        [StatDescription(Title = "召唤命令: @队伍召唤", Mode = StatType.Text)]
         RecallSet,
 
         [StatDescription(Title = "普通怪物基础经验倍率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
@@ -744,7 +744,7 @@ namespace Library
         [StatDescription(Title = "最大冰冻伤害", Format = "{0}", Mode = StatType.Default)]
         FrostBiteMaxDamage,
 
-        [StatDescription(Title = "瘫痪几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "麻痹几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         ParalysisChance,
         [StatDescription(Title = "减速几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         SlowChance,
@@ -770,6 +770,25 @@ namespace Library
 
         [StatDescription(Title = "持久", Mode = StatType.Time)]
         Duration = 10000,
+
+
+
+        [StatDescription(Title = "暴击减免", Format = "{0:+#0;-#0;#0}%", Mode = StatType.Default)] CritReduction = 10001, // 0x00002711
+        [StatDescription(Title = "魔法速度", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)] MagicSpeed = 10002, // 0x00002712
+        [StatDescription(Title = "爆伤减免", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)] JMCriticalDamage = 10003, // 0x00002713
+        [StatDescription(Title = "宠物生命", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)] PetHPPercent = 10004, // 0x00002714
+        [StatDescription(Title = "减免伤害", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)] DamageReduction = 10005, // 0x00002715
+        [StatDescription(Title = "附加伤害", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)] DamageAdd = 10006, // 0x00002716
+        //[StatDescription(Title = "蕴灵等级", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)] Yunling = 10007, // 0x00002717
+        //[StatDescription(Title = "灵气值", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)] 灵气值 = 10008, // 0x00002718
+        //[StatDescription(Title = "红毒", Format = "{0:+#0%;-#0%;#0%}概率使目标中红毒10秒.", Mode = StatType.Percent)] RedPoisonAdd = 10009, // 0x00002719
+        //[StatDescription(Title = "绿毒", Format = "{0:+#0%;-#0%;#0%}概率使目标中绿毒10秒.", Mode = StatType.Percent)] BulePoisonAdd = 10010, // 0x0000271A
+        //[StatDescription(Title = "炼器", Format = "等级{0:+#0;-#0;#0}", Mode = StatType.Default)] LianQi = 10011, // 0x0000271B
+        //[StatDescription(Title = "开光次数", Format = "已开光{0:#0;#0;#0}次", Mode = StatType.Default)] Kaiguang = 10012, // 0x0000271C
+        //[StatDescription(Title = "苍龙护体", Format = "等级{0:+#0;#0;#0}", Mode = StatType.Default)] JinengLEVEL = 10013, // 0x0000271D
+        //[StatDescription(Title = "无视减免", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)] 无视减免 = 10014, // 0x0000271E
+        //[StatDescription(Title = "极限攻击", Format = "{0:+#0;-#0;#0}", Mode = StatType.Default)] 极限攻击 = 10015, // 0x0000271F
+        //[StatDescription(Title = "技能等级提升几率", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)] BookUpgradeRate = 10016, // 0x00002720
     }
 
     public enum StatSource

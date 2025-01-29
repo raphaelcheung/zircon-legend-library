@@ -78,7 +78,7 @@ namespace MirDB
         protected internal bool IsDeleted { get; private set; }
 
         [IgnoreProperty]
-        public bool IsTemporary { get; set; }
+        public bool IsTemporary { get; set; } = false;
 
         [IgnoreProperty]
         protected internal bool IsModified { get; private set; }
@@ -192,13 +192,13 @@ namespace MirDB
             OnSaved();
         }
 
-        public void Delete()
+        public void Delete(bool fast = false)
         {
             if (Collection?.ReadOnly ?? true) return;
 
             PropertyChanged = null;
 
-            Collection.Session.Delete(this);
+            Collection.Session.Delete(this, fast);
         }
 
         public void FastDelete()
