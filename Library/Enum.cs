@@ -45,7 +45,7 @@ namespace Library
         Attack,
         [Description("宠物: PvP")]
         PvP,
-        [Description("宠物: 啥也不干")]
+        [Description("宠物: 休息")]
         None,
     }
 
