@@ -389,7 +389,8 @@ namespace Library
                                MoveTime = TimeSpan.FromMilliseconds(600),
                                AttackTime = TimeSpan.FromMilliseconds(600),
                                CastTime = TimeSpan.FromMilliseconds(600),
-                               MagicDelay = TimeSpan.FromMilliseconds(2000);
+                               MagicDelay = TimeSpan.FromMilliseconds(2000),
+                               FireMagicDelay = TimeSpan.FromMilliseconds(2000 * 2 / 3);
 
 
         public static bool RealNameRequired = false,

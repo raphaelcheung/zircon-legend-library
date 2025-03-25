@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigReader.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="FrameSet.cs" />
     <Compile Include="Functions.cs" />
