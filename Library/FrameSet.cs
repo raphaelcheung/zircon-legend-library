@@ -980,7 +980,7 @@ namespace Library
 
         public bool Reversed, StaticSpeed;
 
-        public TimeSpan[] Delays; //Index = Duration to freeze
+        public TimeSpan[] Delays { get; set; } //Index = Duration to freeze
         
 
         public Frame(int startIndex, int frameCount, int offSet, TimeSpan frameDelay)

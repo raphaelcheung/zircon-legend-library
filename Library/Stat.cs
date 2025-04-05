@@ -578,7 +578,7 @@ namespace Library
         [StatDescription(Title = "增加 20% 售价", Format = "{0} 或更多", Mode = StatType.Default)]
         SaleBonus20,
 
-        [StatDescription(Title = "魔法盾", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
+        [StatDescription(Title = "伤害吸收", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         MagicShield,
         [StatDescription(Title = "隐身", Mode = StatType.Text)]
         Cloak,
