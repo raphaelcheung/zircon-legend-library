@@ -661,7 +661,7 @@ namespace Library
         WeightRate,
         [StatDescription(Title = "最小物防和最小魔防得到了大幅提升.", Mode = StatType.Text)]
         Defiance,
-        [StatDescription(Title = "你牺牲了防守换来进攻能力的提升.", Mode = StatType.Text)]
+        [StatDescription(Title = "你牺牲一半的体力换来进攻能力的提升.", Mode = StatType.Text)]
         Might,
         [StatDescription(Title = "魔法", Format = "{0:+#0%;-#0%;#0%}", Mode = StatType.Percent)]
         ManaPercent,
