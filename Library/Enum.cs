@@ -2314,4 +2314,14 @@ namespace Library
         SetAutojinpiaoBox = 34,
         SetMaxConf = 35,
     }
+
+    public enum AccountIdentity : int
+    {
+        [Description("普通玩家")] Normal = 0,
+        [Description("监督者")] Supervisor,
+        [Description("运营者")] Operator,
+        [Description("管理员")] Admin,
+        [Description("超级管理员")] SuperAdmin,
+
+    }
 }
