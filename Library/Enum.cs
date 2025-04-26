@@ -566,7 +566,7 @@ namespace Library
         MassTransparency = 326,         //隐魂术
         GreaterHolyStrike = 327,        //月明波
         AugmentExplosiveTalisman = 328, //强化灵魂火符
-        AugmentEvilSlayer = 329,        //强化灵魂火符
+        AugmentEvilSlayer = 329,        //强化月魂断玉
         AugmentPurification = 330,      //强化云寂术
         OathOfThePerished = 331,        //强化回生术
         SummonSkeleton = 332,           //召唤骷髅
