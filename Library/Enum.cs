@@ -2313,6 +2313,8 @@ namespace Library
         Kuaisuxiaotui = 33,
         SetAutojinpiaoBox = 34,
         SetMaxConf = 35,
+        SetSwiftBladeBox = 36,
+        SetThunderStrikeBox = 37,
     }
 
     public enum AccountIdentity : int
