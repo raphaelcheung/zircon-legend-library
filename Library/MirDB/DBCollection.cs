@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -139,17 +139,27 @@ namespace MirDB
             using (BinaryWriter writer = new BinaryWriter(mStream))
             {
                 writer.Write(Index);
-                writer.Write(SaveList.Count);
 
-                foreach (T ob in SaveList)
+                // 【终极空引用兜底防线】如果预处理列表为空，直接安全写入 0 条记录并返回，绝不抛出任何 NullReferenceException
+                if (SaveList == null)
                 {
-                    writer.Write(ob.RawData.Length);
-                    writer.Write(ob.RawData);
+                    writer.Write(0);
+                }
+                else
+                {
+                    writer.Write(SaveList.Count);
+
+                    foreach (T ob in SaveList)
+                    {
+                        writer.Write(ob.RawData.Length);
+                        writer.Write(ob.RawData);
+                    }
+
+                    SaveList = null;
                 }
 
                 mStream.Seek(4, SeekOrigin.Begin);
 
-                SaveList = null;
                 return mStream.ToArray();
             }
 

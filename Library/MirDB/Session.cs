@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +16,9 @@ namespace MirDB
         private const string Extention = @".db";
         private const string TempExtention = @".TMP";
         private const string CompressExtention = @".gz";
+
+        private static readonly object _backupLock = new object();
+        private readonly object _saveLock = new object();
 
         private DateTime BackupTime = DateTime.MinValue;
 
@@ -192,10 +195,13 @@ namespace MirDB
 
         public void Save(bool commit)
         {
-            Parallel.ForEach(Collections, x => x.Value.SaveObjects());
+            lock (_saveLock)
+            {
+                Parallel.ForEach(Collections, x => x.Value.SaveObjects());
 
-            if (commit)
-                Commit();
+                if (commit)
+                    Commit();
+            }
         }
         public void Commit()
         {
@@ -208,73 +214,109 @@ namespace MirDB
             if (!Directory.Exists(Root))
                 Directory.CreateDirectory(Root);
 
-            using (BinaryWriter writer = new BinaryWriter(File.Create(SystemPath + TempExtention)))
+            lock (_saveLock)
             {
-                writer.Write(SystemHeader);
-
-                foreach (KeyValuePair<Type, ADBCollection> pair in Collections)
+                using (BinaryWriter writer = new BinaryWriter(File.Create(SystemPath + TempExtention)))
                 {
-                    if (!pair.Value.IsSystemData) continue;
-                    byte[] data = pair.Value.GetSaveData();
+                    writer.Write(SystemHeader);
 
-                    writer.Write(data.Length);
-                    writer.Write(data);
+                    foreach (KeyValuePair<Type, ADBCollection> pair in Collections)
+                    {
+                        if (!pair.Value.IsSystemData) continue;
+                        byte[] data = pair.Value.GetSaveData();
+
+                        writer.Write(data.Length);
+                        writer.Write(data);
+                    }
+                }
+
+                if (!Directory.Exists(SystemBackupPath))
+                    Directory.CreateDirectory(SystemBackupPath);
+
+                lock (_backupLock)
+                {
+                    if (File.Exists(SystemPath))
+                    {
+                        string destFileName = SystemBackupPath + "System " + ToBackUpFileName(DateTime.Now.ToLocalTime()) + Extention;
+                        // 【无损防撞优化】如果同名备份文件已存在（例如同一分钟内被保存了多次），先安全删除旧冲突备份，防止 File.Move 抛出 IOException 导致崩溃
+                        if (File.Exists(destFileName))
+                            File.Delete(destFileName);
+
+                        File.Move(SystemPath, destFileName);
+                    }
+
+                    File.Move(SystemPath + TempExtention, SystemPath);
                 }
             }
-
-            if (!Directory.Exists(SystemBackupPath))
-                Directory.CreateDirectory(SystemBackupPath);
-
-            if (File.Exists(SystemPath))
-                File.Move(SystemPath, SystemBackupPath + "System " + ToBackUpFileName(DateTime.Now.ToLocalTime()) + Extention);
-
-            File.Move(SystemPath + TempExtention, SystemPath);
         }
 
         public void SaveSystem()
         {
             if ((Mode & SessionMode.System) != SessionMode.System) return;
 
-            ForceSaveSystem();
+            lock (_saveLock)
+            {
+                // 强制遍历所有系统数据集合执行内存状态预处理，确保 SaveList 被成功创建与填充
+                Parallel.ForEach(Collections, x =>
+                {
+                    if (x.Value.IsSystemData)
+                        x.Value.SaveObjects();
+                });
+
+                ForceSaveSystem();
+            }
         }
+
         private void SaveUsers()
         {
             if ((Mode & SessionMode.Users) != SessionMode.Users) return;
 
-            if (!Directory.Exists(Root))
-                Directory.CreateDirectory(Root);
-
-            using (BinaryWriter writer = new BinaryWriter(File.Create(UsersPath + TempExtention)))
+            lock (_saveLock)
             {
-                writer.Write(UsersHeader);
+                if (!Directory.Exists(Root))
+                    Directory.CreateDirectory(Root);
 
-                foreach (KeyValuePair<Type, ADBCollection> pair in Collections)
+                using (BinaryWriter writer = new BinaryWriter(File.Create(UsersPath + TempExtention)))
                 {
-                    if (pair.Value.IsSystemData) continue;
+                    writer.Write(UsersHeader);
 
-                    byte[] data = pair.Value.GetSaveData();
+                    foreach (KeyValuePair<Type, ADBCollection> pair in Collections)
+                    {
+                        if (pair.Value.IsSystemData) continue;
 
-                    writer.Write(data.Length);
-                    writer.Write(data);
+                        byte[] data = pair.Value.GetSaveData();
+
+                        writer.Write(data.Length);
+                        writer.Write(data);
+                    }
+                }
+
+                if (!Directory.Exists(UsersBackupPath))
+                    Directory.CreateDirectory(UsersBackupPath);
+
+                lock (_backupLock)
+                {
+                    if (File.Exists(UsersPath))
+                    {
+                        var now = DateTime.Now;
+                        if (now > BackupTime && BackUpSpace < TimeSpan.MaxValue)
+                        {
+                            string destFileName = UsersBackupPath + "Users " + ToBackUpFileName(now.ToLocalTime()) + Extention;
+                            if (File.Exists(destFileName))
+                                File.Delete(destFileName);
+
+                            File.Move(UsersPath, destFileName);
+                            BackupTime = now + BackUpSpace;
+                        }
+                        else
+                        {
+                            File.Delete(UsersPath);
+                        }
+                    }
+
+                    File.Move(UsersPath + TempExtention, UsersPath);
                 }
             }
-
-            if (!Directory.Exists(UsersBackupPath))
-                Directory.CreateDirectory(UsersBackupPath);
-
-            if (File.Exists(UsersPath))
-            {
-                var now = DateTime.Now;
-                if (now > BackupTime && BackUpSpace < TimeSpan.MaxValue)
-                {
-                    File.Move(UsersPath, UsersBackupPath + "Users " + ToBackUpFileName(now.ToLocalTime()) + Extention);
-                    BackupTime = now + BackUpSpace;
-                }
-                else
-                    File.Delete(UsersPath);
-            }
-
-            File.Move(UsersPath + TempExtention, UsersPath);
         }
 
         public DBCollection<T> GetCollection<T>() where T : DBObject, new()
