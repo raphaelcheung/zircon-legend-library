@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -318,7 +318,11 @@ namespace Library
             [LibraryFile.Mon_65] = "Data\\Mon-65.Zl",
             [LibraryFile.Mon_66] = "Data\\Mon-66.Zl",
             [LibraryFile.Mon_67] = "Data\\Mon-67.Zl",
-            [LibraryFile.Mon_68] = "Data\\Mon-68.Zl"
+            [LibraryFile.Mon_68] = "Data\\Mon-68.Zl",
+            [LibraryFile.M_Costume] = "Data\\M-Costume.Zl",
+            [LibraryFile.M_CostumeA] = "Data\\M-CostumeA.Zl",
+            [LibraryFile.WM_Costume] = "Data\\WM-Costume.Zl",
+            [LibraryFile.WM_CostumeA] = "Data\\WM-CostumeA.Zl"
         };
         public static Dictionary<int, LibraryFile> KROrder = new Dictionary<int, LibraryFile>
         {
@@ -708,5 +712,9 @@ namespace Library
         Mon_66,
         Mon_67,
         Mon_68,
+        M_Costume,
+        M_CostumeA,
+        WM_Costume,
+        WM_CostumeA,
     }
 }
