@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Linq.Expressions;
 using G = Library.Network.GeneralPackets;
 
 
@@ -12,7 +14,7 @@ namespace Library.Network
     public abstract class BaseConnection
     {
         public static Dictionary<string, DiagnosticValue> Diagnostics = new Dictionary<string, DiagnosticValue>();
-        public static Dictionary<Type, MethodInfo> PacketMethods = new Dictionary<Type, MethodInfo>();
+        public static Dictionary<Type, Action<BaseConnection, Packet>> PacketMethods = new Dictionary<Type, Action<BaseConnection, Packet>>();
         public static bool Monitor;
 
         public bool Connected { get; set; }
@@ -114,15 +116,15 @@ namespace Library.Network
                 Disconnecting = true;
             }
         }
-        private void BeginSend(List<byte> data)
+        private void BeginSend(byte[] data, int length)
         {
-            if (!Connected || data.Count == 0) return;
+            if (!Connected || length == 0) return;
 
             try
             {
                 Sending = true;
-                TotalBytesSent += data.Count;
-                Client.Client.BeginSend(data.ToArray(), 0, data.Count, SocketFlags.None, SendData, null);
+                TotalBytesSent += length;
+                Client.Client.BeginSend(data, 0, length, SocketFlags.None, SendData, null);
                 UpdateTimeOut();
             }
             catch (Exception ex)
@@ -263,7 +265,7 @@ namespace Library.Network
 
             if (SendList.IsEmpty || Sending) return;
 
-            List<byte> data = new List<byte>();
+            MemoryStream data = new MemoryStream(8192);
             while (!SendList.IsEmpty)
             {
                 Packet p;
@@ -276,7 +278,7 @@ namespace Library.Network
                 {
                     byte[] bytes = p.GetPacketBytes();
 
-                    data.AddRange(bytes);
+                    data.Write(bytes, 0, bytes.Length);
                 }
                 catch (Exception ex)
                 {
@@ -301,7 +303,7 @@ namespace Library.Network
                     value.LargestSize = p.Length;
             }
 
-            BeginSend(data);
+            BeginSend(data.GetBuffer(), (int)data.Length);
         }
 
         private void ProcessPacket(Packet p)
@@ -310,14 +312,24 @@ namespace Library.Network
 
             DateTime start = Time.Now;
             
-            MethodInfo info;
-            if (!PacketMethods.TryGetValue(p.PacketType, out info))
-                PacketMethods[p.PacketType] = info = GetType().GetMethod("Process", new[] { p.PacketType });
+            Action<BaseConnection, Packet> handler;
+            if (!PacketMethods.TryGetValue(p.PacketType, out handler))
+            {
+                MethodInfo info = GetType().GetMethod("Process", new[] { p.PacketType });
+                if (info == null)
+                    throw new NotImplementedException($"Not Implemented Exception: Method Process({p.PacketType}).");
 
-            if (info == null)
-                throw new NotImplementedException($"Not Implemented Exception: Method Process({p.PacketType}).");
+                ParameterExpression connParam = Expression.Parameter(typeof(BaseConnection), "conn");
+                ParameterExpression packetParam = Expression.Parameter(typeof(Packet), "p");
+                MethodCallExpression call = Expression.Call(
+                    Expression.Convert(connParam, info.DeclaringType),
+                    info,
+                    Expression.Convert(packetParam, p.PacketType));
+                handler = Expression.Lambda<Action<BaseConnection, Packet>>(call, connParam, packetParam).Compile();
+                PacketMethods[p.PacketType] = handler;
+            }
 
-            try { info.Invoke(this, new object[] { p }); }
+            try { handler(this, p); }
             catch(Exception e)
             {
                 if (AdditionalLogging)
