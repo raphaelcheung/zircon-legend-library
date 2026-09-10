@@ -120,8 +120,13 @@ namespace MirDB
 
             SaveList = new List<T>(Binding.Count);
 
-            foreach (T ob in Binding)
+            int count = Binding.Count;
+            for (int i = 0; i < count; i++)
             {
+                if (i >= Binding.Count) break;
+
+                T ob = Binding[i];
+
                 if (ob.IsTemporary) continue;
 
                 if (!VersionValid || ob.IsModified)
