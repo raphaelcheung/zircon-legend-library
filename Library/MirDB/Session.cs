@@ -27,6 +27,8 @@ namespace MirDB
 
         public TimeSpan BackUpSpace {  get; set; } = TimeSpan.Zero;
 
+        public bool SystemDataDirty { get; internal set; }
+
         private string SystemPath => Root + "System" + Extention;
         private string SystemBackupPath => BackupRoot + @"System/";
         private byte[] SystemHeader;
@@ -226,16 +228,39 @@ namespace MirDB
                 Directory.CreateDirectory(SystemBackupPath);
 
             if (File.Exists(SystemPath))
-                File.Move(SystemPath, SystemBackupPath + "System " + ToBackUpFileName(DateTime.Now.ToLocalTime()) + Extention);
+                File.Move(SystemPath, GetBackupPath(SystemBackupPath + "System " + ToBackUpFileName(DateTime.Now.ToLocalTime())));
 
             File.Move(SystemPath + TempExtention, SystemPath);
+        }
+
+        private string GetBackupPath(string pathBase)
+        {
+            string path = pathBase + Extention;
+
+            if (!File.Exists(path)) return path;
+
+            string seconds = " " + DateTime.Now.ToLocalTime().ToString("HH-mm-ss");
+            path = pathBase + seconds + Extention;
+
+            int index = 1;
+            while (File.Exists(path) && index < 1000)
+            {
+                path = pathBase + seconds + " (" + index + ")" + Extention;
+                index++;
+            }
+
+            return path;
         }
 
         public void SaveSystem()
         {
             if ((Mode & SessionMode.System) != SessionMode.System) return;
 
+            if (!SystemDataDirty) return;
+
             ForceSaveSystem();
+
+            SystemDataDirty = false;
         }
         private void SaveUsers()
         {
@@ -315,7 +340,13 @@ namespace MirDB
             if (ob.IsDeleted) return;
 
             if (!fast)
-                Collections[ob.ThisType].Delete(ob);
+            {
+                ADBCollection collection = Collections[ob.ThisType];
+                collection.Delete(ob);
+
+                if (collection.IsSystemData)
+                    SystemDataDirty = true;
+            }
 
             ob.OnDeleted();
 

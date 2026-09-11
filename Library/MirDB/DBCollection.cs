@@ -41,6 +41,12 @@ namespace MirDB
                 };
 
                 binding.AddingNew += (o, e) => e.NewObject = CreateNew();
+                binding.ListChanged += (o, e) =>
+                {
+                    if (Session.Relationships != null) return;
+
+                    Session.SystemDataDirty = true;
+                };
                 Binding = binding;
             }
             else
@@ -120,6 +126,8 @@ namespace MirDB
 
             SaveList = new List<T>(Binding.Count);
 
+            bool changed = !VersionValid;
+
             int count = Binding.Count;
             for (int i = 0; i < count; i++)
             {
@@ -130,12 +138,18 @@ namespace MirDB
                 if (ob.IsTemporary) continue;
 
                 if (!VersionValid || ob.IsModified)
+                {
                     ob.Save();
+                    changed = true;
+                }
 
                 SaveList.Add(ob);
             }
 
             VersionValid = true;
+
+            if (changed && IsSystemData)
+                Session.SystemDataDirty = true;
         }
 
         internal override byte[] GetSaveData()
